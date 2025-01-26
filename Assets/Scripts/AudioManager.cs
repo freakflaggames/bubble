@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance;
     public AudioClip[] clips;
     public Dictionary<string, AudioClip> Clips = new Dictionary<string, AudioClip>();
-    public AudioSource source, windupSource, keySource;
+    public AudioSource source, windupSource, keySource, music;
     private void Awake()
     {
         Instance = this;
@@ -33,5 +33,9 @@ public class AudioManager : MonoBehaviour
     public void StopWindupSound()
     {
         windupSource.Stop();
+    }
+    public void StopMusic()
+    {
+        music.Stop();
     }
 }

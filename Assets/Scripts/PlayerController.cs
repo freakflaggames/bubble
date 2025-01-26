@@ -19,10 +19,12 @@ public class PlayerController : MonoBehaviour
     public float LaunchAnticipationTime;
     public float LaunchReleaseTime;
     public float keypitch;
+    public int worldsTraveled;
+    public int keysCollected;
     float freezeTimer;
     float screenshaketimer;
 
-    Transform nextBubble;
+    public Transform nextBubble;
 
     public LineRenderer line;
     public ParticleSystem travelTrail;
@@ -145,6 +147,8 @@ public class PlayerController : MonoBehaviour
             {
                 if (travelling)
                 {
+                    worldsTraveled++;
+                    HandManager.Instance.StartTimer();
                     spriteRenderer.sprite = neutral;
                     rigidbody.velocity /= 10;
                     canDash = true;
@@ -159,6 +163,7 @@ public class PlayerController : MonoBehaviour
 
     public void TravelToBubble(Transform star, Transform bubble)
     {
+        HandManager.Instance.ResetTimer();
         keypitch = 1;
         spriteRenderer.sprite = crouch;
         isAboutToTravel = true;
@@ -206,6 +211,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Key"))
         {
+            keysCollected++;
             AudioManager.Instance.PlayKeySound(keypitch);
             keypitch += 0.1f;
             Destroy(collision.gameObject);
