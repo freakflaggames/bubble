@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public float FreezeTime;
     public float LaunchAnticipationTime;
     public float LaunchReleaseTime;
+    public float keypitch;
     float freezeTimer;
     float screenshaketimer;
 
@@ -158,6 +159,7 @@ public class PlayerController : MonoBehaviour
 
     public void TravelToBubble(Transform star, Transform bubble)
     {
+        keypitch = 1;
         spriteRenderer.sprite = crouch;
         isAboutToTravel = true;
         spriteRenderer.transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -168,6 +170,7 @@ public class PlayerController : MonoBehaviour
                 OnComplete(() => { DOTween.To(() => targetLensSize, x => targetLensSize = x, 30, LaunchReleaseTime).SetEase(Ease.OutExpo); 
         Cinemachine.m_Follow = gameObject.transform;
         //Camera.main.transform.SetParent(transform);
+        AudioManager.Instance.PlaySound("cannon", 1, 1);
         nextBubble = bubble;
         travelPoint = bubble.position;
         isAboutToTravel = false;
@@ -203,6 +206,8 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Key"))
         {
+            AudioManager.Instance.PlayKeySound(keypitch);
+            keypitch += 0.1f;
             Destroy(collision.gameObject);
         }
     }
