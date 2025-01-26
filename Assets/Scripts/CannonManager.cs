@@ -8,23 +8,23 @@ public class CannonManager : MonoBehaviour
 {
     bool active;
     bool bubbleSpawned;
-    public List<GameObject> Enemies;
+    public List<GameObject> Keys;
     public Image Visual;
-    public GameObject BubblePrefab;
+    public GameObject[] BubblePrefabs;
     public GameObject BubbleBG;
     public float BubbleSpawnRadius;
 
     private void Update()
     {
         int aliveEnemies = 0;
-        for (int i = 0; i < Enemies.Count; i++)
+        for (int i = 0; i < Keys.Count; i++)
         {
-            if (Enemies[i] != null)
+            if (Keys[i] != null)
             {
                 aliveEnemies++;
             }
         }
-        Visual.fillAmount = 1-((float)aliveEnemies / Enemies.Count);
+        Visual.fillAmount = 1-((float)aliveEnemies / Keys.Count);
         if (aliveEnemies == 0)
         {
             active = true;
@@ -38,7 +38,7 @@ public class CannonManager : MonoBehaviour
             BubbleBG.tag = "OldBubble";
             Vector3 pos = transform.position + (Vector3)(Random.insideUnitCircle.normalized * BubbleSpawnRadius);
             print(Vector3.Distance(transform.position, pos));
-            Transform bubble = Instantiate(BubblePrefab, pos, Quaternion.identity).transform;
+            Transform bubble = Instantiate(BubblePrefabs[Random.Range(0,BubblePrefabs.Length)], pos, Quaternion.identity).transform;
             bubbleSpawned = true;
             collision.gameObject.GetComponent<PlayerController>().TravelToBubble(transform, bubble);
         }
