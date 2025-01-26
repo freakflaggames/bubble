@@ -12,6 +12,7 @@ public class CannonManager : MonoBehaviour
     public Image Visual;
     public GameObject[] BubblePrefabs;
     public GameObject BubbleBG;
+    public GameObject StarBurst;
     public SpriteRenderer spriteRenderer;
     public Sprite bgOverlay;
     public Sprite chain2, chain1, nochain, opened;
@@ -57,6 +58,8 @@ public class CannonManager : MonoBehaviour
         }
         else if (percentage == 1 && spriteRenderer.sprite == nochain)
         {
+            Instantiate(StarBurst, transform.position, Quaternion.identity);
+            AudioManager.Instance.PlaySound("keyscollected", 1, 1);
             spriteRenderer.sprite = opened;
             spriteRenderer.transform.DOScale(1.5f, 0.1f).SetEase(Ease.OutExpo).OnComplete(() =>
             {
@@ -69,6 +72,7 @@ public class CannonManager : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && active && !bubbleSpawned)
         {
+            AudioManager.Instance.PlaySound("load", 1, 1);
             spriteRenderer.sortingOrder = 5;
             BubbleBG.tag = "OldBubble";
             Vector3 pos = transform.position + (Vector3)(Random.insideUnitCircle.normalized * BubbleSpawnRadius);

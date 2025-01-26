@@ -1124,6 +1124,7 @@ MonoBehaviour:
   - {fileID: 4577707314897623909, guid: d42dfd9d223a729459efb7348c7a7913, type: 3}
   - {fileID: 4577707314897623909, guid: ae9dd69d19973a14fad546e60fdc5600, type: 3}
   BubbleBG: {fileID: 4577707316324930450}
+  StarBurst: {fileID: 4440411749053867367, guid: 1c4bf69e1b1764847a30137bfe1e3751, type: 3}
   spriteRenderer: {fileID: 6697648620392904645}
   bgOverlay: {fileID: 21300000, guid: 44d874cf4fc199544818b67bd9c1188c, type: 3}
   chain2: {fileID: 21300000, guid: 2c63044441a5a854ca200658546b861a, type: 3}
