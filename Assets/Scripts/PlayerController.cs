@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     public LineRenderer line;
     public ParticleSystem travelTrail;
     public SpriteRenderer spriteRenderer;
+    public SpriteRenderer bgOverlay;
 
     public Sprite neutral, crouch, stretch;
 
