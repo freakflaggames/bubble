@@ -25,6 +25,9 @@ public class PlayerController : MonoBehaviour
 
     public LineRenderer line;
     public ParticleSystem travelTrail;
+    public SpriteRenderer spriteRenderer;
+
+    public Sprite neutral, crouch, stretch;
 
     Rigidbody2D rigidbody;
 
@@ -36,6 +39,7 @@ public class PlayerController : MonoBehaviour
 
     Vector2 travelPoint;
 
+    bool isAboutToTravel;
     bool travelling;
     bool shake;
     public bool canDash;
@@ -48,6 +52,17 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
+        if (!isAboutToTravel)
+        {
+            Vector3 diff = rigidbody.velocity.normalized;
+            float deg = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+            spriteRenderer.transform.rotation = Quaternion.Euler(0, 0, deg + 270);
+        }
+        else
+        {
+            spriteRenderer.transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+
         if (freezeTimer > 0)
         {
             Time.timeScale = 0;
@@ -88,6 +103,8 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetMouseButton(0) && canDash)
             {
+                DOTween.To(() => targetLensSize, x => targetLensSize = x, 8, LaunchAnticipationTime).SetEase(Ease.OutExpo);
+                spriteRenderer.sprite = crouch;
                 Time.timeScale = 0.1f;
                 if (hit.collider != null)
                 {
@@ -105,6 +122,8 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetMouseButtonUp(0) && canDash)
             {
+                DOTween.To(() => targetLensSize, x => targetLensSize = x, 9, LaunchAnticipationTime).SetEase(Ease.OutExpo);
+                spriteRenderer.sprite = stretch;
                 line.SetPosition(0, transform.position);
                 line.SetPosition(1, transform.position);
                 Time.timeScale = 1;
@@ -116,6 +135,12 @@ public class PlayerController : MonoBehaviour
         {
             if (Vector3.Distance(travelPoint, transform.position) < 1f)
             {
+                if (travelling)
+                {
+                    spriteRenderer.sprite = neutral;
+                    rigidbody.velocity /= 10;
+                    canDash = true;
+                }
                 collider.enabled = true;
                 Cinemachine.m_Follow = nextBubble;
                 travelling = false;
@@ -126,30 +151,47 @@ public class PlayerController : MonoBehaviour
 
     public void TravelToBubble(Transform star, Transform bubble)
     {
+        spriteRenderer.sprite = crouch;
+        isAboutToTravel = true;
+        spriteRenderer.transform.rotation = Quaternion.Euler(0, 0, 0);
+        collider.enabled = false;
         transform.position = star.position;
-        Vector3 diff = transform.position - ((bubble.position - transform.position).normalized * 2);
-        transform.DOMove(diff, LaunchAnticipationTime).SetEase(Ease.OutExpo);
         rigidbody.velocity = Vector3.zero;
         DOTween.To(() => targetLensSize, x => targetLensSize = x, 5, LaunchAnticipationTime).SetEase(Ease.OutExpo).
                 OnComplete(() => { DOTween.To(() => targetLensSize, x => targetLensSize = x, 30, LaunchReleaseTime).SetEase(Ease.OutExpo); 
         Cinemachine.m_Follow = gameObject.transform;
         //Camera.main.transform.SetParent(transform);
-        collider.enabled = false;
         nextBubble = bubble;
         travelPoint = bubble.position;
+        isAboutToTravel = false;
         travelling = true;
+                    spriteRenderer.sprite = stretch;
         rigidbody.velocity = (travelPoint - (Vector2)transform.position).normalized * TravelSpeed;
                 });
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        canDash = true;
-
+        spriteRenderer.transform.DOScale(new Vector2(1.25f, .75f), 0.05f).SetEase(Ease.OutExpo).OnComplete(() =>
+            {
+                spriteRenderer.transform.DOScale(1, 0.05f).SetEase(Ease.OutExpo);
+            });
+        spriteRenderer.sprite = neutral;
         if (collision.gameObject.CompareTag("Enemy"))
         {
             shake = true;
             freezeTimer = FreezeTime;
+        }
+        else
+        {
+            canDash = true;
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Key"))
+        {
+            Destroy(collision.gameObject);
         }
     }
 }

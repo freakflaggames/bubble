@@ -8,6 +8,7 @@ TagManager:
   - Bubble
   - OldBubble
   - Wall
+  - Key
   layers:
   - Default
   - TransparentFX
