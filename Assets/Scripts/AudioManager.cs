@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance;
     public AudioClip[] clips;
     public Dictionary<string, AudioClip> Clips = new Dictionary<string, AudioClip>();
-    public AudioSource source;
+    public AudioSource source, windupSource;
     private void Awake()
     {
         Instance = this;
@@ -16,8 +16,17 @@ public class AudioManager : MonoBehaviour
             Clips.Add(clips[i].name, clips[i]);
         }
     }
-    public void PlaySound(string name)
+    public void PlaySound(string name, float pitchMin, float pitchMax)
     {
+        source.pitch = Random.Range(pitchMin, pitchMax);
         source.PlayOneShot(Clips[name]);
+    }
+    public void PlayWindupSound()
+    {
+        windupSource.Play();
+    }
+    public void StopWindupSound()
+    {
+        windupSource.Stop();
     }
 }

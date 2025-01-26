@@ -102,6 +102,10 @@ public class PlayerController : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(transform.position, moveInput, 100, WallLayer);
 
+            if (Input.GetMouseButtonDown(0) & canDash)
+            {
+                AudioManager.Instance.PlayWindupSound();
+            }
             if (Input.GetMouseButton(0) && canDash)
             {
                 DOTween.To(() => targetLensSize, x => targetLensSize = x, 8, LaunchAnticipationTime).SetEase(Ease.OutExpo);
@@ -123,6 +127,8 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetMouseButtonUp(0) && canDash)
             {
+                AudioManager.Instance.StopWindupSound();
+                AudioManager.Instance.PlaySound("woosh", 0.9f, 1);
                 DOTween.To(() => targetLensSize, x => targetLensSize = x, 9, LaunchAnticipationTime).SetEase(Ease.OutExpo);
                 spriteRenderer.sprite = stretch;
                 line.SetPosition(0, transform.position);
@@ -180,12 +186,17 @@ public class PlayerController : MonoBehaviour
         spriteRenderer.sprite = neutral;
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            AudioManager.Instance.PlaySound("dodgeball", 0.8f, 1.1f);
             shake = true;
             freezeTimer = FreezeTime;
         }
         else
         {
             canDash = true;
+        }
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            AudioManager.Instance.PlaySound("bounce", 0.8f, 1.1f);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
