@@ -41,6 +41,8 @@ public class PlayerController : MonoBehaviour
     CircleCollider2D collider;
 
     Vector2 startMouseInput, mouseInput, moveInput;
+    public float mouseDistanceMax;
+    public Gradient aimColor;
 
     Vector2 targetInput;
 
@@ -93,15 +95,15 @@ public class PlayerController : MonoBehaviour
         travelTrail.enableEmission = travelling;
 
         //cant aim or perform dash while travelling to another world
-        if (!travelling)
+        if (!travelling && !isAboutToTravel)
         {
-            if (Input.GetMouseButtonDown(0) && canDash && !isAboutToTravel)
+            if (Input.GetMouseButtonDown(0) && canDash)
             {
                 startMouseInput = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 AudioManager.Instance.PlayWindupSound();
             }
             //begin dash aim when click is held
-            if (Input.GetMouseButton(0) && canDash && !isAboutToTravel)
+            if (Input.GetMouseButton(0) && canDash)
             {
                 AimDash();
             }
@@ -143,6 +145,9 @@ public class PlayerController : MonoBehaviour
 
         moveInput = (mouseInput - startMouseInput).normalized;
 
+        float mousePercentage = Vector3.Distance(mouseInput, startMouseInput) / mouseDistanceMax;
+        print(mousePercentage);
+
         RaycastHit2D hit = Physics2D.Raycast(transform.position, -moveInput, 100, WallLayer);
 
         if (cageHits >= cageHitsNeeded)
@@ -158,6 +163,7 @@ public class PlayerController : MonoBehaviour
             float length = Vector2.Distance(transform.position, hit.point);
             float width = line.startWidth;
             line.material.mainTextureScale = new Vector2(length / width, 1.0f);
+            line.material.color = aimColor.Evaluate(mousePercentage);
         }
         else
         {
