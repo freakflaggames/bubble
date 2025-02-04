@@ -26,7 +26,8 @@ public class ShrimpEnemy : MonoBehaviour
     }
     public IEnumerator SpawnBubbles()
     {
-        Instantiate(ShrimpBubblePrefab, transform.position, Quaternion.identity);
+        Transform bubble = Instantiate(ShrimpBubblePrefab, transform.position, Quaternion.identity).transform;
+        bubble.SetParent(transform.parent);
         yield return new WaitForSeconds(BubbleSpawnTime);
         if (bubblesLeft > 0)
         {

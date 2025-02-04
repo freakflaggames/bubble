@@ -79,7 +79,6 @@ public class CannonManager : MonoBehaviour
             Vector3 diff = (transform.position - pos).normalized;
             float deg = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
             transform.DORotate(new Vector3(0, 0, deg), 1).SetEase(Ease.OutBounce);
-            print(Vector3.Distance(transform.position, pos));
             Transform bubble = Instantiate(BubblePrefabs[Random.Range(0,BubblePrefabs.Length)], pos, Quaternion.identity).transform;
             bubbleSpawned = true;
             collision.gameObject.GetComponent<PlayerController>().TravelToBubble(transform, bubble);

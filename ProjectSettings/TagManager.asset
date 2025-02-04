@@ -9,6 +9,7 @@ TagManager:
   - OldBubble
   - Wall
   - Key
+  - Cage
   layers:
   - Default
   - TransparentFX

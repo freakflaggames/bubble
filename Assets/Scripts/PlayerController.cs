@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public CinemachineVirtualCamera Cinemachine;
     public LayerMask WallLayer;
 
+    public int cageHits, cageHitsNeeded;
     public float targetLensSize = 9;
     public float StompSpeed;
     public float TravelSpeed;
@@ -25,6 +26,8 @@ public class PlayerController : MonoBehaviour
     float screenshaketimer;
 
     public Transform nextBubble;
+    public GameObject starBurst;
+    public GameObject cageBurst;
 
     public LineRenderer line;
     public ParticleSystem travelTrail;
@@ -37,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
     CircleCollider2D collider;
 
-    Vector2 moveInput;
+    Vector2 startMouseInput, mouseInput, moveInput;
 
     Vector2 targetInput;
 
@@ -56,17 +59,9 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        if (!isAboutToTravel)
-        {
-            Vector3 diff = rigidbody.velocity.normalized;
-            float deg = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-            spriteRenderer.transform.rotation = Quaternion.Euler(0, 0, deg + 270);
-        }
-        else
-        {
-            spriteRenderer.transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
+        RotateSprite();
 
+        //TODO: move camera shit to camera manager
         if (freezeTimer > 0)
         {
             Time.timeScale = 0;
@@ -97,72 +92,102 @@ public class PlayerController : MonoBehaviour
 
         travelTrail.enableEmission = travelling;
 
+        //cant aim or perform dash while travelling to another world
         if (!travelling)
         {
-            Vector2 mouseInput = (Camera.main.ScreenToWorldPoint(Input.mousePosition)-transform.position).normalized;
-
-            moveInput = mouseInput;
-
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, moveInput, 100, WallLayer);
-
-            if (Input.GetMouseButtonDown(0) & canDash)
+            if (Input.GetMouseButtonDown(0) && canDash && !isAboutToTravel)
             {
+                startMouseInput = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 AudioManager.Instance.PlayWindupSound();
             }
-            if (Input.GetMouseButton(0) && canDash)
+            //begin dash aim when click is held
+            if (Input.GetMouseButton(0) && canDash && !isAboutToTravel)
             {
-                DOTween.To(() => targetLensSize, x => targetLensSize = x, 8, LaunchAnticipationTime).SetEase(Ease.OutExpo);
-                spriteRenderer.sprite = crouch;
-                Time.timeScale = 0.1f;
-                if (hit.collider != null)
-                {
-                    line.SetPosition(0, transform.position);
-                    line.SetPosition(1, hit.point);
-                    float length = Vector2.Distance(transform.position, hit.point);
-                    float width = line.startWidth;
-                    line.material.mainTextureScale = new Vector2(length / width, 1.0f);
-                }
-                else
-                {
-                    Debug.DrawRay(transform.position, moveInput, Color.red);
-                }
+                AimDash();
             }
-
+            //dash performed when click is released
             if (Input.GetMouseButtonUp(0) && canDash)
             {
-                AudioManager.Instance.StopWindupSound();
-                AudioManager.Instance.PlaySound("woosh", 0.9f, 1);
-                DOTween.To(() => targetLensSize, x => targetLensSize = x, 9, LaunchAnticipationTime).SetEase(Ease.OutExpo);
-                spriteRenderer.sprite = stretch;
-                line.SetPosition(0, transform.position);
-                line.SetPosition(1, transform.position);
-                Time.timeScale = 1;
-                rigidbody.velocity = moveInput * StompSpeed;
-                canDash = false;
+                Dash();
             }
         }
         else
         {
+            //if close enough to target bubble, land on it
             if (Vector3.Distance(travelPoint, transform.position) < 1f)
             {
                 if (travelling)
                 {
-                    worldsTraveled++;
-                    HandManager.Instance.StartTimer();
-                    spriteRenderer.sprite = neutral;
-                    rigidbody.velocity /= 10;
-                    canDash = true;
+                    LandOnBubble();
                 }
-                collider.enabled = true;
-                Cinemachine.m_Follow = nextBubble;
-                travelling = false;
-                DOTween.To(() => targetLensSize, x => targetLensSize = x, 9f, .15f).SetEase(Ease.OutExpo);
             }
         }
     }
+    public void RotateSprite()
+    {
+        if (!isAboutToTravel)
+        {
+            //rotate player sprite towards velocity
+            Vector3 diff = rigidbody.velocity.normalized;
+            float deg = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+            spriteRenderer.transform.rotation = Quaternion.Euler(0, 0, deg + 270);
+        }
+        else
+        {
+            spriteRenderer.transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+    }
+    public void AimDash()
+    {
+        mouseInput = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
+        moveInput = (mouseInput - startMouseInput).normalized;
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, -moveInput, 100, WallLayer);
+
+        if (cageHits >= cageHitsNeeded)
+        {
+            DOTween.To(() => targetLensSize, x => targetLensSize = x, 8, LaunchAnticipationTime).SetEase(Ease.OutExpo);
+        }
+        spriteRenderer.sprite = crouch;
+        Time.timeScale = 0.1f;
+        if (hit.collider != null)
+        {
+            line.SetPosition(0, transform.position);
+            line.SetPosition(1, hit.point);
+            float length = Vector2.Distance(transform.position, hit.point);
+            float width = line.startWidth;
+            line.material.mainTextureScale = new Vector2(length / width, 1.0f);
+        }
+        else
+        {
+            Debug.DrawRay(transform.position, moveInput, Color.red);
+        }
+    }
+    public void Dash()
+    {
+        if (cageHits >= cageHitsNeeded)
+        {
+            DOTween.To(() => targetLensSize, x => targetLensSize = x, 9, LaunchAnticipationTime).SetEase(Ease.OutExpo);
+        }
+        AudioManager.Instance.StopWindupSound();
+        AudioManager.Instance.PlaySound("woosh", 0.9f, 1);
+        spriteRenderer.transform.DOScale(new Vector2(.75f, 1.5f), 0.1f).SetEase(Ease.OutExpo).OnComplete(() =>
+        {
+            spriteRenderer.transform.DOScale(1, 0.1f).SetEase(Ease.OutExpo);
+        });
+        spriteRenderer.sprite = stretch;
+        line.SetPosition(0, transform.position);
+        line.SetPosition(1, transform.position);
+        Time.timeScale = 1;
+        rigidbody.velocity = -moveInput * StompSpeed;
+    }
     public void TravelToBubble(Transform star, Transform bubble)
     {
+        //TODO: AHHHHHHHHHHHHHHHH
+        Cinemachine.m_Follow = nextBubble.transform.GetChild(0);
+        spriteRenderer.gameObject.SetActive(false);
+        HandManager.Instance.StopGrabAnimation();
         HandManager.Instance.ResetTimer();
         keypitch = 1;
         spriteRenderer.sprite = crouch;
@@ -171,29 +196,45 @@ public class PlayerController : MonoBehaviour
         collider.enabled = false;
         transform.position = star.position;
         rigidbody.velocity = Vector3.zero;
+
         DOTween.To(() => targetLensSize, x => targetLensSize = x, 5, LaunchAnticipationTime).SetEase(Ease.OutExpo).
                 OnComplete(() => { DOTween.To(() => targetLensSize, x => targetLensSize = x, 30, LaunchReleaseTime).SetEase(Ease.OutExpo); 
         Cinemachine.m_Follow = gameObject.transform;
-        //Camera.main.transform.SetParent(transform);
         AudioManager.Instance.PlaySound("cannon", 1, 1);
-        nextBubble = bubble;
+                    spriteRenderer.gameObject.SetActive(true);
+                    nextBubble = bubble;
         travelPoint = bubble.position;
         isAboutToTravel = false;
         travelling = true;
+                    AudioManager.Instance.PlayHappySound();
                     spriteRenderer.sprite = stretch;
         rigidbody.velocity = (travelPoint - (Vector2)transform.position).normalized * TravelSpeed;
+                    ScoreManager.Instance.AddPlanetScore();
                 });
     }
-
+    public void LandOnBubble()
+    {
+        worldsTraveled++;
+        HandManager.Instance.StartTimer();
+        spriteRenderer.sprite = neutral;
+        rigidbody.velocity /= 10;
+        canDash = true;
+        collider.enabled = true;
+        Cinemachine.m_Follow = nextBubble;
+        travelling = false;
+        DOTween.To(() => targetLensSize, x => targetLensSize = x, 9f, .15f).SetEase(Ease.OutExpo);
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        spriteRenderer.transform.DOScale(new Vector2(1.25f, .75f), 0.05f).SetEase(Ease.OutExpo).OnComplete(() =>
+        //TODO: THIS SUCKS
+        spriteRenderer.transform.DOScale(new Vector2(1.5f, .75f), 0.1f).SetEase(Ease.OutExpo).OnComplete(() =>
             {
-                spriteRenderer.transform.DOScale(1, 0.05f).SetEase(Ease.OutExpo);
+                spriteRenderer.transform.DOScale(1, 0.1f).SetEase(Ease.OutExpo);
             });
         spriteRenderer.sprite = neutral;
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            AudioManager.Instance.PlayHitSound();
             AudioManager.Instance.PlaySound("dodgeball", 0.8f, 1.1f);
             shake = true;
             freezeTimer = FreezeTime;
@@ -206,11 +247,38 @@ public class PlayerController : MonoBehaviour
         {
             AudioManager.Instance.PlaySound("bounce", 0.8f, 1.1f);
         }
+        if (collision.gameObject.CompareTag("Cage"))
+        {
+            Cinemachine.m_Follow = transform;
+            cageHits++;
+            if (cageHits < cageHitsNeeded)
+            {
+                float lens = Mathf.Lerp(9, 5, (float)cageHits / cageHitsNeeded);
+                DOTween.To(() => targetLensSize, x => targetLensSize = x, lens, 0.1f).SetEase(Ease.OutExpo);
+                AudioManager.Instance.PlaySound("metalhit", 0.8f, 1.1f);
+                AudioManager.Instance.PlayHitSound();
+                collision.gameObject.transform.DORotate(new Vector3(0, 0, Random.Range(-15, 15)), 0.1f);
+                collision.gameObject.transform.DOScale(1.1f, 0.1f).OnComplete(() => { collision.gameObject.transform.DOScale(1f, 0.1f); });
+            }
+            else
+            {
+                Time.timeScale = 0.1f;
+                AudioManager.Instance.PlayMusic();
+                Instantiate(cageBurst, transform.position, Quaternion.identity);
+                DOTween.To(() => targetLensSize, x => targetLensSize = x, 9, 1).SetEase(Ease.OutExpo);
+                AudioManager.Instance.PlaySound("break", 1, 1);
+                Cinemachine.m_Follow = nextBubble;
+                Destroy(collision.gameObject);
+            }
+            rigidbody.velocity = Vector3.zero;
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Key"))
         {
+            Instantiate(starBurst, transform.position, Quaternion.identity);
+            ScoreManager.Instance.AddKeyScore();
             keysCollected++;
             AudioManager.Instance.PlayKeySound(keypitch);
             keypitch += 0.1f;

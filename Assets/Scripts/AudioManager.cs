@@ -5,9 +5,12 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
+    public int voxSoundChance;
     public AudioClip[] clips;
+    public AudioClip[] hitClips;
+    public AudioClip[] happyClips;
     public Dictionary<string, AudioClip> Clips = new Dictionary<string, AudioClip>();
-    public AudioSource source, windupSource, keySource, music;
+    public AudioSource source, windupSource, keySource, music, voxsource;
     private void Awake()
     {
         Instance = this;
@@ -21,6 +24,22 @@ public class AudioManager : MonoBehaviour
         source.pitch = Random.Range(pitchMin, pitchMax);
         source.PlayOneShot(Clips[name]);
     }
+    public void PlayHitSound()
+    {
+        int rand = Random.Range(0, voxSoundChance);
+        if (rand == voxSoundChance - 1)
+        {
+            voxsource.PlayOneShot(hitClips[Random.Range(0, hitClips.Length)]);
+        }
+    }
+    public void PlayHappySound()
+    {
+        int rand = Random.Range(0, voxSoundChance);
+        if (rand == voxSoundChance - 1)
+        {
+            voxsource.PlayOneShot(happyClips[Random.Range(0, happyClips.Length)]);
+        }
+    }
     public void PlayKeySound(float pitch)
     {
         keySource.pitch = pitch;
@@ -33,6 +52,10 @@ public class AudioManager : MonoBehaviour
     public void StopWindupSound()
     {
         windupSource.Stop();
+    }
+    public void PlayMusic()
+    {
+        music.Play();
     }
     public void StopMusic()
     {
