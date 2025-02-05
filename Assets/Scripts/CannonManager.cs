@@ -6,12 +6,13 @@ using DG.Tweening;
 
 public class CannonManager : MonoBehaviour
 {
+    //TODO: make seperate bubble/level class
     bool active;
     bool bubbleSpawned;
-    public List<GameObject> Keys;
-    public Image Visual;
+    //TODO: make keys automatically assigned, same for bg
+    public List<GameObject> Keys; //assign in inspector
     public GameObject[] BubblePrefabs;
-    public GameObject BubbleBG;
+    public GameObject BubbleBG; //assign in inspector
     public GameObject StarBurst;
     public SpriteRenderer spriteRenderer;
     public Sprite bgOverlay;

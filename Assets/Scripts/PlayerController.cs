@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using DG.Tweening;
+using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     public CinemachineVirtualCamera Cinemachine;
@@ -42,9 +43,7 @@ public class PlayerController : MonoBehaviour
 
     Vector2 startMouseInput, mouseInput, moveInput;
     public float mouseDistanceMax;
-    public Gradient aimColor;
-
-    Vector2 targetInput;
+    public Image touchStartVisual, touchEndVisual;
 
     Vector2 travelPoint;
 
@@ -132,11 +131,11 @@ public class PlayerController : MonoBehaviour
             //rotate player sprite towards velocity
             Vector3 diff = rigidbody.velocity.normalized;
             float deg = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-            spriteRenderer.transform.rotation = Quaternion.Euler(0, 0, deg + 270);
+            transform.rotation = Quaternion.Euler(0, 0, deg + 270);
         }
         else
         {
-            spriteRenderer.transform.rotation = Quaternion.Euler(0, 0, 0);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
     public void AimDash()
@@ -148,6 +147,12 @@ public class PlayerController : MonoBehaviour
         float mousePercentage = Vector3.Distance(mouseInput, startMouseInput) / mouseDistanceMax;
         print(mousePercentage);
 
+        touchStartVisual.gameObject.SetActive(true);
+        touchStartVisual.transform.position = Camera.main.WorldToScreenPoint(startMouseInput);
+
+        touchEndVisual.gameObject.SetActive(true);
+        touchEndVisual.transform.position = Camera.main.WorldToScreenPoint(mouseInput);
+
         RaycastHit2D hit = Physics2D.Raycast(transform.position, -moveInput, 100, WallLayer);
 
         if (cageHits >= cageHitsNeeded)
@@ -155,15 +160,14 @@ public class PlayerController : MonoBehaviour
             DOTween.To(() => targetLensSize, x => targetLensSize = x, 8, LaunchAnticipationTime).SetEase(Ease.OutExpo);
         }
         spriteRenderer.sprite = crouch;
-        Time.timeScale = 0.1f;
+        Time.timeScale = 0.05f;
         if (hit.collider != null)
         {
             line.SetPosition(0, transform.position);
             line.SetPosition(1, hit.point);
             float length = Vector2.Distance(transform.position, hit.point);
-            float width = line.startWidth;
+            float width = line.startWidth*2;
             line.material.mainTextureScale = new Vector2(length / width, 1.0f);
-            line.material.color = aimColor.Evaluate(mousePercentage);
         }
         else
         {
@@ -172,6 +176,9 @@ public class PlayerController : MonoBehaviour
     }
     public void Dash()
     {
+        touchStartVisual.gameObject.SetActive(false);
+        touchEndVisual.gameObject.SetActive(false);
+
         if (cageHits >= cageHitsNeeded)
         {
             DOTween.To(() => targetLensSize, x => targetLensSize = x, 9, LaunchAnticipationTime).SetEase(Ease.OutExpo);
