@@ -1247,9 +1247,13 @@ PrefabInstance:
       value: Cannon
       objectReference: {fileID: 0}
     - target: {fileID: 7462575402073246339, guid: eadf4888bc650f94c870bf33230d8e5a, type: 3}
+      propertyPath: BubblePrefabs.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7462575402073246339, guid: eadf4888bc650f94c870bf33230d8e5a, type: 3}
       propertyPath: BubblePrefabs.Array.data[6]
       value: 
-      objectReference: {fileID: 4577707314897623909}
+      objectReference: {fileID: 4577707314897623909, guid: ae9dd69d19973a14fad546e60fdc5600, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eadf4888bc650f94c870bf33230d8e5a, type: 3}
 --- !u!4 &8581270692681843556 stripped
