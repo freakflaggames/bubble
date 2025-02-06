@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4894809930702188393}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.075, y: 0.834, z: 0}
+  m_LocalPosition: {x: 0.47, y: 0.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -104,9 +104,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 942c9440a90b56e4ea97eabb1a867a6b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -125,7 +125,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6036902669308781409}
   - component: {fileID: 6036902669308781411}
-  - component: {fileID: 6036902669308781412}
   - component: {fileID: 427852243954467327}
   m_Layer: 0
   m_Name: Fire Enemy
@@ -172,22 +171,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &6036902669308781412
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6036902669308781413}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!114 &427852243954467327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,7 +183,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47cc2143769ef964abce8a7369cd0966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 3877174708855529260}
+  neutral: {fileID: 21300000, guid: 942c9440a90b56e4ea97eabb1a867a6b, type: 3}
+  shoot: {fileID: 21300000, guid: b8e8f2b8621197448847647243665e18, type: 3}
   ShootForce: 20
   Fireball: {fileID: 223499285117030388, guid: a48a72d53d978b8428b1c58c08d0030a, type: 3}
   ShootPoint: {fileID: 873488834145863915}
   WaitTime: 0.2
+  PauseTime: 1
