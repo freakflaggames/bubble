@@ -10,7 +10,7 @@ public class CannonManager : MonoBehaviour
     bool active;
     bool bubbleSpawned;
     public List<GameObject> Keys;
-    public GameObject[] BubblePrefabs;
+    public GameObject[] BubblePrefabs; //TODO: get from a level manager
     public GameObject BubbleBG;
     public GameObject StarBurst;
     public SpriteRenderer spriteRenderer;
@@ -25,7 +25,10 @@ public class CannonManager : MonoBehaviour
         //get keys from transform children
         foreach(Transform child in transform)
         {
-            Keys.Add(child.gameObject);
+            if (child.CompareTag("Key"))
+            {
+                Keys.Add(child.gameObject);
+            }
         }
 
         //when generated, set bg color to this bubble's color (move to bubble class)

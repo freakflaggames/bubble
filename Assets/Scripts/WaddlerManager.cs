@@ -14,6 +14,13 @@ public class WaddlerManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(WaitToMove());
+
+        foreach(Transform child in transform)
+        {
+            Vector3 diff = (child.parent.position - child.position).normalized;
+            float deg = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+            child.rotation = Quaternion.Euler(0, 0, deg-90);
+        }
     }
 
     public IEnumerator WaitToMove()
