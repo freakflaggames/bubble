@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1e4459f63c88134eb8f2ffbd0866f32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WaitTime: 0.75
+  WaitTime: 0.5
   enemies:
   - {fileID: 8101035816104646217}
   - {fileID: 3186484608477964893}

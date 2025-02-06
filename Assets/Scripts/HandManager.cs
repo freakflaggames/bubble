@@ -6,6 +6,7 @@ using TMPro;
 using DG.Tweening;
 public class HandManager : MonoBehaviour
 {
+    //TODO: move this to a timermanager or something
     public Transform endTransition;
     public SpriteRenderer endBlack;
     public Animator animator;

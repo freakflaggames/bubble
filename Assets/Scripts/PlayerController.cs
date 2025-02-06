@@ -141,8 +141,9 @@ public class PlayerController : MonoBehaviour
     }
     public void AimDash()
     {
+        //dash direction is calculated from where you started your touch vs where it is now
         mouseInput = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        moveInput = (mouseInput - startMouseInput).normalized;
+        moveInput = -(mouseInput - startMouseInput).normalized;
 
         startInputGraphic.gameObject.SetActive(true);
         startInputGraphic.transform.position = Camera.main.WorldToScreenPoint(startMouseInput);
@@ -150,7 +151,7 @@ public class PlayerController : MonoBehaviour
         currentInputGraphic.gameObject.SetActive(true);
         currentInputGraphic.transform.position = Camera.main.WorldToScreenPoint(mouseInput);
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, -moveInput, 100, WallLayer);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, moveInput, 100, WallLayer);
 
         if (cageHits >= cageHitsNeeded)
         {
@@ -158,7 +159,7 @@ public class PlayerController : MonoBehaviour
         }
 
         spriteRenderer.sprite = crouch;
-        Time.timeScale = 0.1f;
+        Time.timeScale = 0.05f;
         if (hit.collider != null)
         {
             line.SetPosition(0, transform.position);
@@ -166,10 +167,6 @@ public class PlayerController : MonoBehaviour
             float length = Vector2.Distance(transform.position, hit.point);
             float width = line.startWidth;
             line.material.mainTextureScale = new Vector2(length / width, 1.0f);
-        }
-        else
-        {
-            Debug.DrawRay(transform.position, moveInput, Color.red);
         }
     }
     public void Dash()
@@ -191,7 +188,7 @@ public class PlayerController : MonoBehaviour
         line.SetPosition(0, transform.position);
         line.SetPosition(1, transform.position);
         Time.timeScale = 1;
-        rigidbody.velocity = -moveInput * StompSpeed;
+        rigidbody.velocity = moveInput * StompSpeed;
     }
     public void TravelToBubble(Transform star, Transform bubble)
     {
@@ -238,6 +235,7 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //TODO: THIS SUCKS
+        //this stuff should all be moved to their respective scripts
         spriteRenderer.transform.DOScale(new Vector2(1.5f, .75f), 0.1f).SetEase(Ease.OutExpo).OnComplete(() =>
             {
                 spriteRenderer.transform.DOScale(1, 0.1f).SetEase(Ease.OutExpo);
@@ -258,6 +256,7 @@ public class PlayerController : MonoBehaviour
         {
             AudioManager.Instance.PlaySound("bounce", 0.8f, 1.1f);
         }
+        //this should all go in a cage script
         if (collision.gameObject.CompareTag("Cage"))
         {
             Cinemachine.m_Follow = transform;
