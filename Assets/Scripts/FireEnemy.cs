@@ -37,7 +37,7 @@ public class FireEnemy : MonoBehaviour
                 });
             });
             GameObject fireball = Instantiate(Fireball, ShootPoint.position, Quaternion.identity);
-            fireball.GetComponent<Rigidbody2D>().velocity = transform.up * ShootForce;
+            fireball.GetComponent<Rigidbody2D>().velocity = ShootPoint.up * ShootForce;
         }
         StartCoroutine(WaitToShoot());
     }
