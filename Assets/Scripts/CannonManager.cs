@@ -6,10 +6,10 @@ using DG.Tweening;
 
 public class CannonManager : MonoBehaviour
 {
+    //TODO: make a separate level/bubble class
     bool active;
     bool bubbleSpawned;
     public List<GameObject> Keys;
-    public Image Visual;
     public GameObject[] BubblePrefabs;
     public GameObject BubbleBG;
     public GameObject StarBurst;
@@ -19,6 +19,16 @@ public class CannonManager : MonoBehaviour
     public float BubbleSpawnRadius;
     private void Start()
     {
+        //get bubble bg from bubble parent transform
+        BubbleBG = transform.parent.Find("BG").gameObject;
+
+        //get keys from transform children
+        foreach(Transform child in transform)
+        {
+            Keys.Add(child.gameObject);
+        }
+
+        //when generated, set bg color to this bubble's color (move to bubble class)
         FindAnyObjectByType<PlayerController>().GetComponent<PlayerController>().bgOverlay.DOColor(new Color(1, 1, 1, 0), 1f).OnComplete(() =>
         {
             FindAnyObjectByType<PlayerController>().GetComponent<PlayerController>().bgOverlay.sprite = bgOverlay;
@@ -27,6 +37,7 @@ public class CannonManager : MonoBehaviour
     }
     private void Update()
     {
+        //TODO: simplify and move out of update
         int aliveEnemies = 0;
         for (int i = 0; i < Keys.Count; i++)
         {
@@ -70,6 +81,7 @@ public class CannonManager : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //TODO: move to bubble class
         if (collision.gameObject.CompareTag("Player") && active && !bubbleSpawned)
         {
             AudioManager.Instance.PlaySound("load", 1, 1);
