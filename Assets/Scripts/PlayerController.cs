@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using DG.Tweening;
+using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     public CinemachineVirtualCamera Cinemachine;
@@ -41,8 +42,7 @@ public class PlayerController : MonoBehaviour
     CircleCollider2D collider;
 
     Vector2 startMouseInput, mouseInput, moveInput;
-    public float mouseDistanceMax;
-    public Gradient aimColor;
+    public Image startInputGraphic, currentInputGraphic;
 
     Vector2 targetInput;
 
@@ -142,11 +142,13 @@ public class PlayerController : MonoBehaviour
     public void AimDash()
     {
         mouseInput = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
         moveInput = (mouseInput - startMouseInput).normalized;
 
-        float mousePercentage = Vector3.Distance(mouseInput, startMouseInput) / mouseDistanceMax;
-        print(mousePercentage);
+        startInputGraphic.gameObject.SetActive(true);
+        startInputGraphic.transform.position = Camera.main.WorldToScreenPoint(startMouseInput);
+
+        currentInputGraphic.gameObject.SetActive(true);
+        currentInputGraphic.transform.position = Camera.main.WorldToScreenPoint(mouseInput);
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, -moveInput, 100, WallLayer);
 
@@ -154,6 +156,7 @@ public class PlayerController : MonoBehaviour
         {
             DOTween.To(() => targetLensSize, x => targetLensSize = x, 8, LaunchAnticipationTime).SetEase(Ease.OutExpo);
         }
+
         spriteRenderer.sprite = crouch;
         Time.timeScale = 0.1f;
         if (hit.collider != null)
@@ -163,7 +166,6 @@ public class PlayerController : MonoBehaviour
             float length = Vector2.Distance(transform.position, hit.point);
             float width = line.startWidth;
             line.material.mainTextureScale = new Vector2(length / width, 1.0f);
-            line.material.color = aimColor.Evaluate(mousePercentage);
         }
         else
         {
@@ -172,6 +174,9 @@ public class PlayerController : MonoBehaviour
     }
     public void Dash()
     {
+        startInputGraphic.gameObject.SetActive(false);
+        currentInputGraphic.gameObject.SetActive(false);
+
         if (cageHits >= cageHitsNeeded)
         {
             DOTween.To(() => targetLensSize, x => targetLensSize = x, 9, LaunchAnticipationTime).SetEase(Ease.OutExpo);
