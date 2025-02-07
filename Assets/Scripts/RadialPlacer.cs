@@ -5,38 +5,31 @@ using UnityEngine;
 public class RadialPlacer : MonoBehaviour
 {
     //evenly spaces out elements in a radius
+    public List<GameObject> elementsToPlace;
     public float radius;
     public float offset;
 
     private void Start()
     {
-        PlaceElements();
     }
 
     public void PlaceElements()
-    {
-        List<GameObject> objectsToPlace = new List<GameObject>();
-
-        foreach(Transform child in transform)
-        {
-            objectsToPlace.Add(child.gameObject);
-        }
-
-        int count = objectsToPlace.Count;
+    { 
+        int count = elementsToPlace.Count;
 
         float angleStep = 360f / count; // Angle step between each object
 
         for (int i = 0; i < count; i++)
         {
-            float angle = i * angleStep * Mathf.Deg2Rad;
+            float angle = ((i * angleStep)+offset) * Mathf.Deg2Rad;
 
             Vector3 position = new Vector3(
-                Mathf.Cos(angle+offset) * radius,
-                Mathf.Sin(angle+offset) * radius,
+                Mathf.Cos(angle) * radius,
+                Mathf.Sin(angle) * radius,
                 0f
             );
 
-            objectsToPlace[i].transform.position = position;
+            elementsToPlace[i].transform.position = position;
         }
     }
 }

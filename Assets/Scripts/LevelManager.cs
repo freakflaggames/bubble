@@ -24,13 +24,13 @@ public class LevelManager : MonoBehaviour
         int randomLevelIndex = Random.Range(0, Levels.Count);
         LevelDifficulties Level = Levels[randomLevelIndex];
         //get a random difficulty, but only include difficulties player has completed + the next one
-        int randomDifficultyIndex = Random.Range(0, Level.CurrentDifficulty);
+        int randomDifficultyIndex = Random.Range(0, Level.CurrentDifficulty+1);
         GameObject Difficulty = Level.Difficulties[randomDifficultyIndex];
         //raise difficulty level if player completed the hardest level so far
         if (randomDifficultyIndex == Level.CurrentDifficulty)
         {
             Level.CurrentDifficulty++;
-            Level.CurrentDifficulty = Mathf.Clamp(Level.CurrentDifficulty, 0, Level.Difficulties.Count);
+            Level.CurrentDifficulty = Mathf.Clamp(Level.CurrentDifficulty, 0, Level.Difficulties.Count-1);
         }
         return Difficulty;
     }

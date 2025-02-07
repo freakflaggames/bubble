@@ -1606,15 +1606,13 @@ MonoBehaviour:
   Levels:
   - Difficulties:
     - {fileID: 4577707314897623909, guid: bbf6a939f0522194e9ad31bb78b6bb4e, type: 3}
-    CurrentDifficulty: 0
-  - Difficulties:
-    - {fileID: 4577707314897623909, guid: 9fb44fbf0090d434fa24c79032085c73, type: 3}
-    CurrentDifficulty: 0
-  - Difficulties:
-    - {fileID: 4577707314897623909, guid: aabde6f89779a4846ac2c008f522994f, type: 3}
-    CurrentDifficulty: 0
-  - Difficulties:
-    - {fileID: 4577707314897623909, guid: 7c87742db05312a4098322afe0a2c941, type: 3}
+    - {fileID: 4577707314897623909, guid: 63b99ce4cd3eac8479ffa281b7ff63ec, type: 3}
+    - {fileID: 4577707314897623909, guid: 2ac1817ede4b5eb4c9ce282aed32a547, type: 3}
+    - {fileID: 4577707314897623909, guid: 9fd63b6ecbaa5a54db8ddb9e159a9bb4, type: 3}
+    - {fileID: 4577707314897623909, guid: a3392902fdf13dc48a024dde0a244309, type: 3}
+    - {fileID: 4577707314897623909, guid: 86288b33e6ef6b34f99a2cd86bde41be, type: 3}
+    - {fileID: 4577707314897623909, guid: 23e4e4a1f24c4934a8e97e939aa52913, type: 3}
+    - {fileID: 4577707314897623909, guid: 75dc5e36df6028b41a650503605177ab, type: 3}
     CurrentDifficulty: 0
 --- !u!4 &679815738
 Transform:
@@ -1947,6 +1945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34b3ce20b2bee94fa30a6aa64d0e040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  elementsToPlace: []
   radius: 0
   offset: 0
 --- !u!1 &989813283
@@ -4370,14 +4369,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1532081462}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
