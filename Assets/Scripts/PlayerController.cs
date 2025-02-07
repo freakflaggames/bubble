@@ -143,6 +143,7 @@ public class PlayerController : MonoBehaviour
     {
         //dash direction is calculated from where you started your touch vs where it is now
         mouseInput = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //move input is inverted so it feels like youre pulling back to launch
         moveInput = -(mouseInput - startMouseInput).normalized;
 
         startInputGraphic.gameObject.SetActive(true);
@@ -158,6 +159,7 @@ public class PlayerController : MonoBehaviour
             DOTween.To(() => targetLensSize, x => targetLensSize = x, 8, LaunchAnticipationTime).SetEase(Ease.OutExpo);
         }
 
+        //could be using a state machine for changing sprites 
         spriteRenderer.sprite = crouch;
         Time.timeScale = 0.05f;
         if (hit.collider != null)

@@ -10,7 +10,7 @@ public class CannonManager : MonoBehaviour
     bool active;
     bool bubbleSpawned;
     public List<GameObject> Keys;
-    public GameObject[] BubblePrefabs; //TODO: get from a level manager
+    //public GameObject[] BubblePrefabs; 
     public GameObject BubbleBG;
     public GameObject StarBurst;
     public SpriteRenderer spriteRenderer;
@@ -94,7 +94,8 @@ public class CannonManager : MonoBehaviour
             Vector3 diff = (transform.position - pos).normalized;
             float deg = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
             transform.DORotate(new Vector3(0, 0, deg), 1).SetEase(Ease.OutBounce);
-            Transform bubble = Instantiate(BubblePrefabs[Random.Range(0,BubblePrefabs.Length)], pos, Quaternion.identity).transform;
+            //Transform bubble = Instantiate(BubblePrefabs[Random.Range(0,BubblePrefabs.Length)], pos, Quaternion.identity).transform;
+            Transform bubble = Instantiate(LevelManager.Instance.GetRandomLevel(), pos, Quaternion.identity).transform;
             bubbleSpawned = true;
             collision.gameObject.GetComponent<PlayerController>().TravelToBubble(transform, bubble);
         }
