@@ -76,9 +76,9 @@ public class HandManager : MonoBehaviour
     public void ResetTimer()
     {
         timerMax -= timeDecay;
-        if (timerMax < 2.1f)
+        if (timerMax < 2.25f)
         {
-            timerMax = 2.1f;
+            timerMax = 2.25f;
         }
         timer = timerMax;
         active = false;

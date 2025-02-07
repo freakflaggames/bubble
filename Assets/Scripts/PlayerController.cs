@@ -245,7 +245,6 @@ public class PlayerController : MonoBehaviour
         spriteRenderer.sprite = neutral;
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            rigidbody.velocity = Vector3.zero;
             AudioManager.Instance.PlayHitSound();
             AudioManager.Instance.PlaySound("dodgeball", 0.8f, 1.1f);
             shake = true;
