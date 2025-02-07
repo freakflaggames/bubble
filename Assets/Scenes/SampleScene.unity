@@ -1606,26 +1606,15 @@ MonoBehaviour:
   Levels:
   - Difficulties:
     - {fileID: 4577707314897623909, guid: bbf6a939f0522194e9ad31bb78b6bb4e, type: 3}
-    - {fileID: 4577707314897623909, guid: 0c0723734b57910489b77e2aadc9d700, type: 3}
-    - {fileID: 4577707314897623909, guid: a52392e2e64d4614396bfe345fe769ba, type: 3}
-    - {fileID: 4577707314897623909, guid: 404f0bfd184360847a8b2e9a88945036, type: 3}
-    - {fileID: 4577707314897623909, guid: fcd8063a325828b408b85153e6c8d643, type: 3}
     CurrentDifficulty: 0
   - Difficulties:
     - {fileID: 4577707314897623909, guid: 9fb44fbf0090d434fa24c79032085c73, type: 3}
-    - {fileID: 4577707314897623909, guid: 4807a84eb20d7084f9484e4b082e16f0, type: 3}
-    - {fileID: 4577707314897623909, guid: c594bf2868e0501448905bd06a27b0f0, type: 3}
-    - {fileID: 4577707314897623909, guid: adb276c3ebef45c4e8746898ed695694, type: 3}
     CurrentDifficulty: 0
   - Difficulties:
-    - {fileID: 4577707314897623909, guid: 47ca963bab50a59418ab9daf137fefa1, type: 3}
     - {fileID: 4577707314897623909, guid: aabde6f89779a4846ac2c008f522994f, type: 3}
-    - {fileID: 4577707314897623909, guid: d42dfd9d223a729459efb7348c7a7913, type: 3}
     CurrentDifficulty: 0
   - Difficulties:
     - {fileID: 4577707314897623909, guid: 7c87742db05312a4098322afe0a2c941, type: 3}
-    - {fileID: 4577707314897623909, guid: ae9dd69d19973a14fad546e60fdc5600, type: 3}
-    - {fileID: 4577707314897623909, guid: f0d313c4ca986ef468e454d83751ed67, type: 3}
     CurrentDifficulty: 0
 --- !u!4 &679815738
 Transform:
@@ -1871,6 +1860,7 @@ GameObject:
   m_Component:
   - component: {fileID: 892194786}
   - component: {fileID: 892194787}
+  - component: {fileID: 892194788}
   m_Layer: 0
   m_Name: bg overlay
   m_TagString: Untagged
@@ -1945,6 +1935,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &892194788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892194785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34b3ce20b2bee94fa30a6aa64d0e040, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 0
+  offset: 0
 --- !u!1 &989813283
 GameObject:
   m_ObjectHideFlags: 0
