@@ -13,12 +13,16 @@ public class Fireball : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<Rigidbody2D>().velocity = (collision.gameObject.transform.position - transform.position).normalized * HitForce;
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
+        else if (collision.gameObject.CompareTag("Wall"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

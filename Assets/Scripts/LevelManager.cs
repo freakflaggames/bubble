@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class LevelDifficulties
-{
-    [SerializeField]
-    public List<GameObject> Difficulties = new List<GameObject>();
-    public int CurrentDifficulty;
-}
 public class LevelManager : MonoBehaviour
 {
-    public List<LevelDifficulties> Levels = new List<LevelDifficulties>();
+    public List<GameObject> Levels = new List<GameObject>();
     public static LevelManager Instance;
+    public Vector2 DifficultyRange;
+    public Vector2 DifficultyModifier;
+
     private void Awake()
     {
         Instance = this;
@@ -22,16 +18,8 @@ public class LevelManager : MonoBehaviour
     {
         //get a random level
         int randomLevelIndex = Random.Range(0, Levels.Count);
-        LevelDifficulties Level = Levels[randomLevelIndex];
-        //get a random difficulty, but only include difficulties player has completed + the next one
-        int randomDifficultyIndex = Random.Range(0, Level.CurrentDifficulty+1);
-        GameObject Difficulty = Level.Difficulties[randomDifficultyIndex];
-        //raise difficulty level if player completed the hardest level so far
-        if (randomDifficultyIndex == Level.CurrentDifficulty)
-        {
-            Level.CurrentDifficulty++;
-            Level.CurrentDifficulty = Mathf.Clamp(Level.CurrentDifficulty, 0, Level.Difficulties.Count-1);
-        }
-        return Difficulty;
+        GameObject Level = Levels[randomLevelIndex];
+        DifficultyRange += DifficultyModifier;
+        return Level;
     }
 }

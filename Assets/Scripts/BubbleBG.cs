@@ -18,13 +18,19 @@ public class BubbleBG : MonoBehaviour
         if (distance < 8 && startWobble)
         {
             Wobble();
-            endWobble = true;
+            if (!gameObject.CompareTag("OldBubble"))
+            {
+                endWobble = true;
+            }
             startWobble = false;
         }
-        if (distance > 8 && endWobble)
+        if (distance > 8)
         {
-            Wobble();
-            endWobble = false;
+            if (endWobble)
+            {
+                Wobble();
+                endWobble = false;
+            }
             startWobble = true;
         }
     }

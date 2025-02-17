@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class FireEnemy : MonoBehaviour
+public class FireEnemy : Enemy
 {
     public SpriteRenderer spriteRenderer;
     public Sprite neutral, shoot;
@@ -11,22 +11,21 @@ public class FireEnemy : MonoBehaviour
     public GameObject Fireball;
     public Transform ShootPoint;
     public float WaitTime;
-    public float PauseTime;
-    bool active;
+    public bool active;
     private void Start()
     {
-        StartCoroutine(WaitToPause());
+        Vector3 diff = (transform.parent.position - transform.position).normalized;
+        float deg = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, deg-90);
         StartCoroutine(WaitToShoot());
     }
-    IEnumerator WaitToPause()
+    public override void Activate()
     {
         active = !active;
-        yield return new WaitForSeconds(PauseTime);
-        StartCoroutine(WaitToPause());
     }
     IEnumerator WaitToShoot()
     {
-        yield return new WaitForSeconds(WaitTime);
+        yield return new WaitForSeconds(WaitTime / (1 + LevelManager.Instance.DifficultyRange.x));
         if (active)
         {
             spriteRenderer.sprite = shoot;
@@ -37,7 +36,8 @@ public class FireEnemy : MonoBehaviour
                 });
             });
             GameObject fireball = Instantiate(Fireball, ShootPoint.position, Quaternion.identity);
-            fireball.GetComponent<Rigidbody2D>().velocity = ShootPoint.up * ShootForce;
+            fireball.transform.SetParent(transform.parent.parent);
+            fireball.GetComponent<Rigidbody2D>().velocity = ShootPoint.up * ShootForce * (1 + LevelManager.Instance.DifficultyRange.x);
         }
         StartCoroutine(WaitToShoot());
     }

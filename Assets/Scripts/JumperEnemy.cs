@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class JumperEnemy : MonoBehaviour
+public class JumperEnemy : Enemy
 {
+    public int trajectoryRatio;
     public Sprite neutral, jump;
     public SpriteRenderer spriteRenderer;
     public float JumpForce;
+    public Vector2 JumpForceRange;
+    float startJumpForce;
     Rigidbody2D rb;
     private void Start()
     {
@@ -15,13 +18,19 @@ public class JumperEnemy : MonoBehaviour
         Vector3 diff = (transform.parent.position - transform.position).normalized;
         float deg = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, deg);
+        JumpForce *= 1 + LevelManager.Instance.DifficultyRange.x;
+        JumpForce = Mathf.Clamp(JumpForce, JumpForceRange.x, JumpForceRange.y);
     }
-    public void Jump()
+    public override void Activate()
     {
+        if (trajectoryRatio == 0)
+        {
+            trajectoryRatio = transform.parent.childCount;
+        }
         if (rb.velocity == Vector2.zero)
         {
             spriteRenderer.sprite = jump;
-            Vector3 diff = (transform.parent.position - transform.position).normalized;
+            Vector3 diff = (transform.up/ trajectoryRatio + transform.right).normalized;
             rb.velocity = JumpForce * diff;
         }
     }
@@ -38,10 +47,6 @@ public class JumperEnemy : MonoBehaviour
             float deg = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0, 0, deg);
             rb.velocity = Vector3.zero;
-        }
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            //Destroy(gameObject);
         }
     }
 }

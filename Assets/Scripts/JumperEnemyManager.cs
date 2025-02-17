@@ -20,7 +20,7 @@ public class JumperEnemyManager : MonoBehaviour
     {
         if (enemies[index] != null)
         {
-            enemies[index].Jump();
+            //enemies[index].Jump();
         }
         index++;
         index %= enemies.Length;

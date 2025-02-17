@@ -87,11 +87,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 7420939759043861933}
   neutral: {fileID: 21300000, guid: 465032a502a34b944abafcaee3b6588d, type: 3}
   swim: {fileID: 21300000, guid: 5f2ec91e08555e047a6794f25853ecdb, type: 3}
-  SwimForce: 5000
-  WaitTime: 1
-  BubblesToSpawn: 3
-  BubbleSpawnTime: 0.1
-  ShrimpBubblePrefab: {fileID: 2670290779919651420, guid: 5c1c9ac193d78db4a8c0929710806862, type: 3}
+  SwimForce: 1000
 --- !u!1 &8731712658506518232
 GameObject:
   m_ObjectHideFlags: 0

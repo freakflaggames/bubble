@@ -289,7 +289,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Key"))
         {
-            Instantiate(starBurst, transform.position, Quaternion.identity);
+            Instantiate(starBurst, collision.gameObject.transform.position, Quaternion.identity);
             ScoreManager.Instance.AddKeyScore();
             keysCollected++;
             AudioManager.Instance.PlayKeySound(keypitch);

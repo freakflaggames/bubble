@@ -23,14 +23,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4894809930702188393}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.47, y: 0.27, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.1599662, w: 0.98712254}
+  m_LocalPosition: {x: 0.242, y: 0.46700025, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6036902669308781409}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -18.41}
 --- !u!1 &5768044537552288994
 GameObject:
   m_ObjectHideFlags: 0
@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2647128257452604167}
   - component: {fileID: 3877174708855529260}
+  - component: {fileID: 893052685375619329}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -115,6 +116,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &893052685375619329
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5768044537552288994}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.054488778, y: -0.22405246}
+  serializedVersion: 2
+  m_Radius: 0.3041406
 --- !u!1 &6036902669308781413
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,7 +175,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6036902669308781413}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -189,5 +206,5 @@ MonoBehaviour:
   ShootForce: 20
   Fireball: {fileID: 223499285117030388, guid: a48a72d53d978b8428b1c58c08d0030a, type: 3}
   ShootPoint: {fileID: 873488834145863915}
-  WaitTime: 0.2
-  PauseTime: 1
+  WaitTime: 0.3
+  active: 0

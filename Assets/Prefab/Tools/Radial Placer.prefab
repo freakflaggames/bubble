@@ -44,6 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34b3ce20b2bee94fa30a6aa64d0e040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cannonPrefab: {fileID: 0}
+  keyPrefab: {fileID: 0}
+  enemyPrefab: {fileID: 0}
+  enemyManager: {fileID: 6323162993616848255, guid: 907bdf0d95ca37644b3d85d9acd4c2b2, type: 3}
+  enemies: []
+  keys: []
   elementsToPlace: []
-  radius: 0
+  radius: 9
   offset: 0

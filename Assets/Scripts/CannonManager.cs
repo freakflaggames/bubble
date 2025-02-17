@@ -20,22 +20,19 @@ public class CannonManager : MonoBehaviour
     private void Start()
     {
         //get bubble bg from bubble parent transform
-        BubbleBG = transform.parent.Find("BG").gameObject;
-
-        //get keys from transform children
-        foreach(Transform child in transform)
-        {
-            if (child.CompareTag("Key"))
-            {
-                Keys.Add(child.gameObject);
-            }
-        }
+        BubbleBG = transform.parent.parent.Find("BG").gameObject;
 
         //when generated, set bg color to this bubble's color (move to bubble class)
-        FindAnyObjectByType<PlayerController>().GetComponent<PlayerController>().bgOverlay.DOColor(new Color(1, 1, 1, 0), 1f).OnComplete(() =>
+        FindAnyObjectByType<PlayerController>().GetComponent<PlayerController>().bgOverlay.DOColor(new Color(1, 1, 1, 1), 1).OnComplete(() =>
         {
-            FindAnyObjectByType<PlayerController>().GetComponent<PlayerController>().bgOverlay.sprite = bgOverlay;
-            FindAnyObjectByType<PlayerController>().GetComponent<PlayerController>().bgOverlay.DOColor(new Color(1, 1, 1, 1), 1f);
+            FindAnyObjectByType<PlayerController>().GetComponent<PlayerController>().bgOverlay.DOColor(new Color(1, 1, 1, 0), 1).OnComplete(() =>
+            {
+                FindAnyObjectByType<PlayerController>().GetComponent<PlayerController>().bgOverlay.sprite = bgOverlay;
+                FindAnyObjectByType<PlayerController>().GetComponent<PlayerController>().bgOverlay.DOColor(new Color(1, 1, 1, 0), .4f).OnComplete(() =>
+                {
+                    FindAnyObjectByType<PlayerController>().GetComponent<PlayerController>().bgOverlay.DOColor(new Color(1, 1, 1, 1), 1);
+                });
+            });
         });
     }
     private void Update()
