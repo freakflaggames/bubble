@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour
     public static LevelManager Instance;
     public Vector2 DifficultyRange;
     public Vector2 DifficultyModifier;
+    public int GemChance;
 
     private void Awake()
     {

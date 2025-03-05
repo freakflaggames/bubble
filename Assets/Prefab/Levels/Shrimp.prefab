@@ -475,7 +475,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: 8fff45af43569f74596c3066647eb549, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -584,9 +584,11 @@ MonoBehaviour:
   cannonPrefab: {fileID: 4797472489836107394, guid: eadf4888bc650f94c870bf33230d8e5a, type: 3}
   keyPrefab: {fileID: 7579014456015881368, guid: 17e1eca6a41815444ac581be6ed7f3c0, type: 3}
   enemyPrefab: {fileID: 6036902669308781413, guid: dfbc071a629a0aa4b8d29968a8e3d404, type: 3}
+  gemPrefab: {fileID: 7987394465463926523, guid: bb651f89d447b524fa04565716d722f3, type: 3}
   enemyManager: {fileID: 6323162993616848255, guid: 907bdf0d95ca37644b3d85d9acd4c2b2, type: 3}
   enemies: []
   keys: []
+  gems: []
   elementsToPlace: []
   enemyRange: {x: 1, y: 4}
   keyPerEnemyRange: {x: 3, y: 5}

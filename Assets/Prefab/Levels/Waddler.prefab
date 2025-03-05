@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4577707314897623908}
   m_Layer: 0
-  m_Name: Jumper
+  m_Name: Waddler
   m_TagString: Bubble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -476,7 +476,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -2
-  m_Sprite: {fileID: 21300000, guid: ef1b860ed332a414c887e1681d93448c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 23670693bb4681b48a27b39659521f84, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -580,17 +580,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1292afae2c4e48648941f832f24b4f6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGOverlay: {fileID: 21300000, guid: 44d874cf4fc199544818b67bd9c1188c, type: 3}
+  BGOverlay: {fileID: 21300000, guid: ec058a1803be7314cb7b508eb84b1335, type: 3}
   cannonPrefab: {fileID: 4797472489836107394, guid: eadf4888bc650f94c870bf33230d8e5a, type: 3}
   keyPrefab: {fileID: 7579014456015881368, guid: 17e1eca6a41815444ac581be6ed7f3c0, type: 3}
-  enemyPrefab: {fileID: 6036902669308781413, guid: 9ac2107f3cc22154682040099c19ff58, type: 3}
+  enemyPrefab: {fileID: 2036576164749568150, guid: c95778b974bae9440b1d893afb090383, type: 3}
   gemPrefab: {fileID: 7987394465463926523, guid: bb651f89d447b524fa04565716d722f3, type: 3}
   enemyManager: {fileID: 6323162993616848255, guid: 907bdf0d95ca37644b3d85d9acd4c2b2, type: 3}
   enemies: []
   keys: []
   gems: []
   elementsToPlace: []
-  enemyRange: {x: 1, y: 5}
-  keyPerEnemyRange: {x: 1, y: 3}
-  radius: 7
+  enemyRange: {x: 2, y: 7}
+  keyPerEnemyRange: {x: 3, y: 5}
+  radius: 7.2
   offset: 0

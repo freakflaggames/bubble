@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public virtual void RotateTowardsCenter()
+    {
+
+    }
     public virtual void Activate()
     {
 

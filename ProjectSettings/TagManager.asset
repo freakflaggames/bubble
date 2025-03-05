@@ -10,6 +10,7 @@ TagManager:
   - Wall
   - Key
   - Cage
+  - Gem
   layers:
   - Default
   - TransparentFX

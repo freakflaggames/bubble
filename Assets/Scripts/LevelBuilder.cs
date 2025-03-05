@@ -5,8 +5,8 @@ using UnityEngine;
 public class LevelBuilder : MonoBehaviour
 {
     public Sprite BGOverlay;
-    public GameObject cannonPrefab, keyPrefab, enemyPrefab, enemyManager;
-    public List<GameObject> enemies, keys, elementsToPlace;
+    public GameObject cannonPrefab, keyPrefab, enemyPrefab, gemPrefab, enemyManager;
+    public List<GameObject> enemies, keys, gems, elementsToPlace;
     public Vector2 enemyRange, keyPerEnemyRange;
     public float radius;
     public float offset;
@@ -38,6 +38,7 @@ public class LevelBuilder : MonoBehaviour
         //spawn a random amount of enemies/keys based on difficulty
         int enemyCount = Random.Range(minEnemyDifficulty, maxEnemyDifficulty);
         int keyCount = enemyCount * Random.Range(minKeyDifficulty, maxKeyDifficulty);
+        int gemCount = Random.Range(0, LevelManager.Instance.GemChance+1) == LevelManager.Instance.GemChance ? Random.Range(1, 3) : 0;
 
         print(minEnemyDifficulty + " " + maxEnemyDifficulty);
 
@@ -53,12 +54,17 @@ public class LevelBuilder : MonoBehaviour
             enemies.Add(enemy);
             manager.GetComponent<EnemyCycleManager>().Enemies.Add(enemy);
         }
+        for (int i = 0; i < gemCount; i++)
+        {
+            GameObject gem = Instantiate(gemPrefab, manager.transform.parent);
+            enemies.Add(gem);
+        }
 
         int totalCount = enemies.Count + keys.Count;
 
         offset = 360 / (totalCount*2) * Random.Range(0, totalCount*2);
 
-        //determine even spacing between enemies and keys
+        //determine even spacing between enemies, keys, and gems
         int enemyPeriodicity = 0;
         if (keys.Count > 0 && enemies.Count > 0)
         {
@@ -66,10 +72,15 @@ public class LevelBuilder : MonoBehaviour
         }
         for (int i = 0; i < totalCount; i++)
         {
-            if (i % enemyPeriodicity == 0)
+            if (i % enemyPeriodicity == 0 && enemies.Count > 0)
             {
                 elementsToPlace.Add(enemies[0]);
                 enemies.RemoveAt(0);
+            }
+            else if (gems.Count > 0)
+            {
+                elementsToPlace.Add(gems[0]);
+                gems.RemoveAt(0);
             }
             else if (keys.Count > 0)
             {

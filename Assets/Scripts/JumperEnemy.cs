@@ -17,7 +17,7 @@ public class JumperEnemy : Enemy
         rb = GetComponent<Rigidbody2D>();
         Vector3 diff = (transform.parent.position - transform.position).normalized;
         float deg = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, deg);
+        transform.rotation = Quaternion.Euler(0, 0, deg-90);
         JumpForce *= 1 + LevelManager.Instance.DifficultyRange.x;
         JumpForce = Mathf.Clamp(JumpForce, JumpForceRange.x, JumpForceRange.y);
     }
@@ -45,7 +45,7 @@ public class JumperEnemy : Enemy
             spriteRenderer.sprite = neutral;
             Vector3 diff = (transform.parent.position - transform.position).normalized;
             float deg = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, deg);
+            transform.rotation = Quaternion.Euler(0, 0, deg-90);
             rb.velocity = Vector3.zero;
         }
     }

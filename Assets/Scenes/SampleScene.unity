@@ -1326,6 +1326,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1364,7 +1365,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: -43.23
+  near clip plane: 0.001
   far clip plane: 1000
   field of view: 60
   orthographic: 1
@@ -1437,6 +1438,39 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &548393142
 GameObject:
   m_ObjectHideFlags: 0
@@ -1604,11 +1638,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Levels:
+  - {fileID: 4577707314897623909, guid: 6df44ad69f6fad44587f81f564c56ef0, type: 3}
   - {fileID: 4577707314897623909, guid: b63202b5e8779604d96610d02f7d68be, type: 3}
   - {fileID: 4577707314897623909, guid: bbf6a939f0522194e9ad31bb78b6bb4e, type: 3}
   - {fileID: 4577707314897623909, guid: 0dbf1b9aeaf85d04895f6381ed61d181, type: 3}
   DifficultyRange: {x: 0, y: -1}
   DifficultyModifier: {x: 0.03, y: 0.2}
+  GemChance: 0
 --- !u!4 &679815738
 Transform:
   m_ObjectHideFlags: 0
@@ -5284,6 +5320,9 @@ MonoBehaviour:
   nextBubble: {fileID: 4577707316401781835}
   starBurst: {fileID: 4440411749053867367, guid: 8b50c236c1effab4ea836d1ee5e10011, type: 3}
   cageBurst: {fileID: 8769542003695439744, guid: 362d51024c21d6d47a61c7439046d549, type: 3}
+  gemBurst: {fileID: 4440411749053867367, guid: 59fb48398537ea543aa6b3122a6c2531, type: 3}
+  gemTrailPrefab: {fileID: 7987394465463926523, guid: bd33a0f4f8a02e649b257df51add1be9, type: 3}
+  collectedGems: []
   line: {fileID: 2116623882}
   travelTrail: {fileID: 2116623884}
   spriteRenderer: {fileID: 2004814260}
@@ -10228,7 +10267,7 @@ MonoBehaviour:
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 9
-    NearClipPlane: -43.23
+    NearClipPlane: 0.001
     FarClipPlane: 1000
     Dutch: 0
     ModeOverride: 0

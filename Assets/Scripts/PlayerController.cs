@@ -29,6 +29,10 @@ public class PlayerController : MonoBehaviour
     public Transform nextBubble;
     public GameObject starBurst;
     public GameObject cageBurst;
+    public GameObject gemBurst;
+
+    public GameObject gemTrailPrefab;
+    public List<GameObject> collectedGems;
 
     public LineRenderer line;
     public ParticleSystem travelTrail;
@@ -124,6 +128,14 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+
+        for (int i = 0; i < collectedGems.Count; i++)
+        {
+            if (Vector3.Distance(collectedGems[i].transform.position, transform.position) > (i+1)*1.5f)
+            { 
+                collectedGems[i].transform.position = Vector3.Lerp(collectedGems[i].transform.position, transform.position, 0.05f); 
+            }
+        }
     }
     public void RotateSprite()
     {
@@ -195,6 +207,13 @@ public class PlayerController : MonoBehaviour
     public void TravelToBubble(Transform star, Transform bubble)
     {
         //TODO: AHHHHHHHHHHHHHHHH
+        for (int i = 0; i < collectedGems.Count; i++)
+        {
+            ScoreManager.Instance.AddGemScore(0.2f * (i+1));
+            Destroy(collectedGems[i]);
+        }
+        ScoreManager.Instance.AddPlanetScore();
+        collectedGems.Clear();
         Cinemachine.m_Follow = nextBubble.transform.GetChild(0);
         spriteRenderer.gameObject.SetActive(false);
         HandManager.Instance.StopGrabAnimation();
@@ -219,7 +238,7 @@ public class PlayerController : MonoBehaviour
                     AudioManager.Instance.PlayHappySound();
                     spriteRenderer.sprite = stretch;
         rigidbody.velocity = (travelPoint - (Vector2)transform.position).normalized * TravelSpeed;
-                    ScoreManager.Instance.AddPlanetScore();
+                    ScoreManager.Instance.HideScoreBonus();
                 });
     }
     public void LandOnBubble()
@@ -245,6 +264,12 @@ public class PlayerController : MonoBehaviour
         spriteRenderer.sprite = neutral;
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            if (collectedGems.Count > 0)
+            {
+                Instantiate(gemBurst, collectedGems[collectedGems.Count - 1].transform.position, Quaternion.identity);
+                Destroy(collectedGems[0]);
+                collectedGems.RemoveAt(0);
+            }
             AudioManager.Instance.PlayHitSound();
             AudioManager.Instance.PlaySound("dodgeball", 0.8f, 1.1f);
             shake = true;
@@ -294,6 +319,12 @@ public class PlayerController : MonoBehaviour
             keysCollected++;
             AudioManager.Instance.PlayKeySound(keypitch);
             keypitch += 0.1f;
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.CompareTag("Gem")) 
+        {
+            GameObject gem = Instantiate(gemTrailPrefab, transform.position, Quaternion.identity);
+            collectedGems.Add(gem);
             Destroy(collision.gameObject);
         }
     }
