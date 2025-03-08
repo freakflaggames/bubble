@@ -39,7 +39,7 @@ public class JumperEnemy : Enemy
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-            spriteRenderer.transform.DOScale(new Vector2(2, .5f), 0.1f).SetEase(Ease.OutExpo).OnComplete(() =>
+            spriteRenderer.transform.DOScale(new Vector2(1.5f, .5f), 0.1f).SetEase(Ease.OutExpo).OnComplete(() =>
             {
                 spriteRenderer.transform.DOScale(1, 0.15f).SetEase(Ease.OutExpo);
             });

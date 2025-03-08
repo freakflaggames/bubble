@@ -1638,16 +1638,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Levels:
-  - {fileID: 4577707314897623909, guid: 6df44ad69f6fad44587f81f564c56ef0, type: 3}
-  - {fileID: 4577707314897623909, guid: b63202b5e8779604d96610d02f7d68be, type: 3}
   - {fileID: 4577707314897623909, guid: bbf6a939f0522194e9ad31bb78b6bb4e, type: 3}
+  - {fileID: 4577707314897623909, guid: b63202b5e8779604d96610d02f7d68be, type: 3}
   - {fileID: 4577707314897623909, guid: 0dbf1b9aeaf85d04895f6381ed61d181, type: 3}
+  - {fileID: 4577707314897623909, guid: 6df44ad69f6fad44587f81f564c56ef0, type: 3}
   Obstacles:
   - {fileID: 8891583894884715859, guid: f94675d1f765f384c9007dd53d6b6c1a, type: 3}
   - {fileID: 8891583894884715859, guid: de9def3e28243c1458343b84b18abe26, type: 3}
   - {fileID: 8891583894884715859, guid: 85e00b389aaf90549912d1ed1ac6cb65, type: 3}
   - {fileID: 8891583894884715859, guid: 1d4bd9d51cb76324cb0b8961f1606677, type: 3}
-  DifficultyRange: {x: 0, y: -1}
+  DifficultyRange: {x: 0, y: 0}
   DifficultyModifier: {x: 0.03, y: 0.2}
   GemChance: 0
 --- !u!4 &679815738

@@ -15,6 +15,7 @@ public class BumperObstacle : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            collision.gameObject.GetComponent<PlayerController>().UnAnchorPlayer();
             collision.gameObject.GetComponent<Rigidbody2D>().velocity = transform.up * LaunchForce;
         }
     }
