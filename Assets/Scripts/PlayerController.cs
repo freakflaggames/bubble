@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour
     bool isAboutToTravel;
     bool travelling;
     bool shake;
+    bool freezeReturn;
     public bool canDash;
 
     private void Awake()
@@ -73,10 +74,15 @@ public class PlayerController : MonoBehaviour
         {
             Time.timeScale = 0;
             freezeTimer -= Time.unscaledDeltaTime;
+            freezeReturn = false;
         }
         else
         {
-            Time.timeScale = 1;
+            if (!freezeReturn)
+            {
+                Time.timeScale = 1;
+                freezeReturn = true;
+            }
             if (shake)
             {
                 screenshaketimer = ScreenShakeTime;
@@ -134,9 +140,12 @@ public class PlayerController : MonoBehaviour
         {
             float distanceInterval = 1.5f;
             float smoothTime = 0.05f;
-            if (Vector3.Distance(collectedGems[i].transform.position, transform.position) > (i+1)* distanceInterval)
-            { 
-                collectedGems[i].transform.position = Vector3.Lerp(collectedGems[i].transform.position, transform.position, smoothTime); 
+            if (gameObject != null)
+            {
+                if (Vector3.Distance(collectedGems[i].transform.position, transform.position) > (i + 1) * distanceInterval)
+                {
+                    collectedGems[i].transform.position = Vector3.Lerp(collectedGems[i].transform.position, transform.position, smoothTime);
+                }
             }
         }
     }
@@ -205,7 +214,10 @@ public class PlayerController : MonoBehaviour
         spriteRenderer.sprite = stretch;
         line.SetPosition(0, transform.position);
         line.SetPosition(1, transform.position);
-        Time.timeScale = 1;
+        if (Time.timeScale > 0)
+        {
+            Time.timeScale = 1;
+        }
         rigidbody.velocity = moveInput * StompSpeed;
     }
     public void TravelToBubble(Transform star, Transform bubble)

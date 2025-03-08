@@ -20,13 +20,10 @@ public class ScoreManager : MonoBehaviour
     {
         smoothedScore = Mathf.Lerp(smoothedScore, score, smoothSpeed);
         scoreText.text = Mathf.Round(smoothedScore) + "";
-        keyscoreText.text = keyscore + "";
-        planetscoreText.text = planetscore + "";
     }
     public void AddKeyScore()
     {
         score += 10;
-        keyscore++;
     }
     public void AddPlanetScore()
     {
@@ -34,7 +31,6 @@ public class ScoreManager : MonoBehaviour
         scoreBonus.transform.localScale = Vector3.zero;
         scoreBonus.transform.DOScale(1, 0.2f).SetEase(Ease.OutBack);
         score += 100;
-        planetscore++;
     }
     public void AddGemScore(float delayTime)
     {

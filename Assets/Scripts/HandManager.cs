@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 public class HandManager : MonoBehaviour
@@ -14,6 +15,7 @@ public class HandManager : MonoBehaviour
     public bool active;
     public bool grabbing;
     public static HandManager Instance;
+    public Image timerFill;
     public TextMeshProUGUI timerText;
     private void Awake()
     {
@@ -27,6 +29,7 @@ public class HandManager : MonoBehaviour
     private void Update()
     {
         timerText.text = Mathf.Round(timer) + "";
+        timerFill.fillAmount = Mathf.Lerp(0.43f, 0.83f,timer / 10f);
         if (active)
         {
             timer -= Time.deltaTime;
