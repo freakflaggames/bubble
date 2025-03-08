@@ -23,6 +23,7 @@ public class JumperEnemy : Enemy
     }
     public override void Activate()
     {
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         if (trajectoryRatio == 0)
         {
             trajectoryRatio = transform.parent.childCount;
@@ -30,7 +31,7 @@ public class JumperEnemy : Enemy
         if (rb.velocity == Vector2.zero)
         {
             spriteRenderer.sprite = jump;
-            Vector3 diff = (transform.up/ trajectoryRatio + transform.right).normalized;
+            Vector3 diff = (transform.up + transform.right / trajectoryRatio).normalized;
             rb.velocity = JumpForce * diff;
         }
     }
@@ -47,6 +48,7 @@ public class JumperEnemy : Enemy
             float deg = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0, 0, deg-90);
             rb.velocity = Vector3.zero;
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
     }
 }

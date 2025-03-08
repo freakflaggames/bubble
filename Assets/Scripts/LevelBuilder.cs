@@ -6,7 +6,7 @@ public class LevelBuilder : MonoBehaviour
 {
     public Sprite BGOverlay;
     public GameObject cannonPrefab, keyPrefab, enemyPrefab, gemPrefab, enemyManager;
-    public List<GameObject> enemies, keys, gems, elementsToPlace;
+    public List<GameObject> enemies, keys, gems, obstacles, elementsToPlace;
     public Vector2 enemyRange, keyPerEnemyRange;
     public float radius;
     public float offset;
@@ -37,10 +37,11 @@ public class LevelBuilder : MonoBehaviour
 
         //spawn a random amount of enemies/keys based on difficulty
         int enemyCount = Random.Range(minEnemyDifficulty, maxEnemyDifficulty);
-        int keyCount = enemyCount * Random.Range(minKeyDifficulty, maxKeyDifficulty);
-        int gemCount = Random.Range(0, LevelManager.Instance.GemChance+1) == LevelManager.Instance.GemChance ? Random.Range(1, 3) : 0;
+        int gemCount = Random.Range(Mathf.RoundToInt(LevelManager.Instance.DifficultyRange.x), Mathf.RoundToInt(LevelManager.Instance.DifficultyRange.y));
+        int obstacleCount = Random.Range(Mathf.RoundToInt(LevelManager.Instance.DifficultyRange.x), Mathf.RoundToInt(LevelManager.Instance.DifficultyRange.y));
+        int keyCount = Mathf.Clamp(enemyCount * Random.Range(minKeyDifficulty, maxKeyDifficulty) - gemCount - obstacleCount,1,100);
 
-        print(minEnemyDifficulty + " " + maxEnemyDifficulty);
+        //print(minEnemyDifficulty + " " + maxEnemyDifficulty);
 
         for (int i = 0; i < keyCount; i++)
         {
@@ -59,8 +60,13 @@ public class LevelBuilder : MonoBehaviour
             GameObject gem = Instantiate(gemPrefab, manager.transform.parent);
             enemies.Add(gem);
         }
+        for (int i = 0; i < obstacleCount; i++)
+        {
+            GameObject obstacle = Instantiate(LevelManager.Instance.GetRandomObstacle(), manager.transform.parent);
+            obstacles.Add(obstacle);
+        }
 
-        int totalCount = enemies.Count + keys.Count;
+        int totalCount = enemies.Count + keys.Count + gems.Count + obstacles.Count;
 
         offset = 360 / (totalCount*2) * Random.Range(0, totalCount*2);
 
@@ -76,6 +82,11 @@ public class LevelBuilder : MonoBehaviour
             {
                 elementsToPlace.Add(enemies[0]);
                 enemies.RemoveAt(0);
+            }
+            else if (obstacles.Count > 0)
+            {
+                elementsToPlace.Add(obstacles[0]);
+                obstacles.RemoveAt(0);
             }
             else if (gems.Count > 0)
             {

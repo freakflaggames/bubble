@@ -44,18 +44,21 @@ public class HandManager : MonoBehaviour
             if (active)
             {
                 Destroy(timerText.transform.parent.gameObject);
-                int worlds = FindAnyObjectByType<PlayerController>().worldsTraveled;
-                int keys = FindAnyObjectByType<PlayerController>().keysCollected;
+                PlayerController Player = FindAnyObjectByType<PlayerController>();
+                int worlds = Player.worldsTraveled;
+                int keys = Player.keysCollected;
                 PlayerPrefs.SetInt("worlds", worlds);
                 PlayerPrefs.SetInt("keys", keys);
                 AudioManager.Instance.StopMusic();
                 AudioManager.Instance.PlaySound("pop", 1, 1);
                 AudioManager.Instance.PlaySound("choke", 1, 1);
-                FindAnyObjectByType<PlayerController>().transform.localScale = Vector3.zero;
-                FindAnyObjectByType<PlayerController>().transform.position = Camera.main.transform.position;
-                FindAnyObjectByType<PlayerController>().GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-                Destroy(FindAnyObjectByType<PlayerController>().nextBubble.gameObject);
-                FindAnyObjectByType<PlayerController>().canDash = false;
+                Player.transform.localScale = Vector3.zero;
+                Player.transform.position = Camera.main.transform.position;
+                Player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                Player.ResetLineRenderer();
+                Player.ResetCollectedGems();
+                Destroy(Player.nextBubble.gameObject);
+                Player.canDash = false;
                 active = false;
                 StartCoroutine(WaitToSceneChange());
                 endTransition.transform.DOScale(0.65f, 3);

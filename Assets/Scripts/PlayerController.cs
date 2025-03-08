@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public float targetLensSize = 9;
     public float StompSpeed;
     public float TravelSpeed;
+    public float HitForce;
     public float InputSmoothSpeed;
     public float LensSmoothSpeed;
     public float ScreenShakeFrequency;
@@ -131,9 +132,11 @@ public class PlayerController : MonoBehaviour
 
         for (int i = 0; i < collectedGems.Count; i++)
         {
-            if (Vector3.Distance(collectedGems[i].transform.position, transform.position) > (i+1)*1.5f)
+            float distanceInterval = 1.5f;
+            float smoothTime = 0.05f;
+            if (Vector3.Distance(collectedGems[i].transform.position, transform.position) > (i+1)* distanceInterval)
             { 
-                collectedGems[i].transform.position = Vector3.Lerp(collectedGems[i].transform.position, transform.position, 0.05f); 
+                collectedGems[i].transform.position = Vector3.Lerp(collectedGems[i].transform.position, transform.position, smoothTime); 
             }
         }
     }
@@ -185,6 +188,7 @@ public class PlayerController : MonoBehaviour
     }
     public void Dash()
     {
+        UnAnchorPlayer();
         startInputGraphic.gameObject.SetActive(false);
         currentInputGraphic.gameObject.SetActive(false);
 
@@ -207,6 +211,7 @@ public class PlayerController : MonoBehaviour
     public void TravelToBubble(Transform star, Transform bubble)
     {
         //TODO: AHHHHHHHHHHHHHHHH
+        ResetLineRenderer();
         for (int i = 0; i < collectedGems.Count; i++)
         {
             ScoreManager.Instance.AddGemScore(0.2f * (i+1));
@@ -253,6 +258,37 @@ public class PlayerController : MonoBehaviour
         travelling = false;
         DOTween.To(() => targetLensSize, x => targetLensSize = x, 9f, .15f).SetEase(Ease.OutExpo);
     }
+    public void ResetLineRenderer()
+    {
+        line.SetPosition(0, transform.position);
+        line.SetPosition(1, transform.position);
+    }
+    public void ResetCollectedGems()
+    {
+        for (int i = 0; i < collectedGems.Count; i++)
+        {
+            Destroy(collectedGems[i]);
+        }
+    }
+    public void HitByEnemy(Transform enemy)
+    {
+        UnAnchorPlayer();
+        if (collectedGems.Count > 0)
+        {
+            Instantiate(gemBurst, collectedGems[collectedGems.Count - 1].transform.position, Quaternion.identity);
+            Destroy(collectedGems[0]);
+            collectedGems.RemoveAt(0);
+        }
+        rigidbody.velocity = (transform.position - enemy.transform.position) * HitForce;
+        AudioManager.Instance.PlayHitSound();
+        AudioManager.Instance.PlaySound("dodgeball", 0.8f, 1.1f);
+        shake = true;
+        freezeTimer = FreezeTime;
+    }
+    public void UnAnchorPlayer()
+    {
+        transform.SetParent(null);
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //TODO: THIS SUCKS
@@ -264,20 +300,7 @@ public class PlayerController : MonoBehaviour
         spriteRenderer.sprite = neutral;
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            if (collectedGems.Count > 0)
-            {
-                Instantiate(gemBurst, collectedGems[collectedGems.Count - 1].transform.position, Quaternion.identity);
-                Destroy(collectedGems[0]);
-                collectedGems.RemoveAt(0);
-            }
-            AudioManager.Instance.PlayHitSound();
-            AudioManager.Instance.PlaySound("dodgeball", 0.8f, 1.1f);
-            shake = true;
-            freezeTimer = FreezeTime;
-        }
-        else
-        {
-            canDash = true;
+            HitByEnemy(collision.transform);
         }
         if (collision.gameObject.CompareTag("Wall"))
         {

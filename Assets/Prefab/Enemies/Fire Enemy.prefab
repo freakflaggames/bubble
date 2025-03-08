@@ -207,4 +207,5 @@ MonoBehaviour:
   Fireball: {fileID: 223499285117030388, guid: a48a72d53d978b8428b1c58c08d0030a, type: 3}
   ShootPoint: {fileID: 873488834145863915}
   WaitTime: 0.3
+  MinWaitTime: 0.2
   active: 0

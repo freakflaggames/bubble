@@ -1642,7 +1642,12 @@ MonoBehaviour:
   - {fileID: 4577707314897623909, guid: b63202b5e8779604d96610d02f7d68be, type: 3}
   - {fileID: 4577707314897623909, guid: bbf6a939f0522194e9ad31bb78b6bb4e, type: 3}
   - {fileID: 4577707314897623909, guid: 0dbf1b9aeaf85d04895f6381ed61d181, type: 3}
-  DifficultyRange: {x: 0, y: -1}
+  Obstacles:
+  - {fileID: 8891583894884715859, guid: f94675d1f765f384c9007dd53d6b6c1a, type: 3}
+  - {fileID: 8891583894884715859, guid: de9def3e28243c1458343b84b18abe26, type: 3}
+  - {fileID: 8891583894884715859, guid: 85e00b389aaf90549912d1ed1ac6cb65, type: 3}
+  - {fileID: 8891583894884715859, guid: 1d4bd9d51cb76324cb0b8961f1606677, type: 3}
+  DifficultyRange: {x: 1, y: 2}
   DifficultyModifier: {x: 0.03, y: 0.2}
   GemChance: 0
 --- !u!4 &679815738
@@ -3903,7 +3908,7 @@ PrefabInstance:
     - target: {fileID: 1630794972795428178, guid: e2f1687b5fcd71546b6283a1443e74d5, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0ff99302c5e28874881847fe68a1164d, type: 2}
+      objectReference: {fileID: 2100000, guid: 9386779b54fc49848a84fdc1d84f0fd6, type: 2}
     - target: {fileID: 1630794972795428178, guid: e2f1687b5fcd71546b6283a1443e74d5, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
@@ -5373,11 +5378,12 @@ MonoBehaviour:
   targetLensSize: 9
   StompSpeed: 40
   TravelSpeed: 30
+  HitForce: 30
   InputSmoothSpeed: 0.01
   LensSmoothSpeed: 0.01
-  ScreenShakeFrequency: 1
+  ScreenShakeFrequency: 2
   ScreenShakeTime: 0.1
-  FreezeTime: 0.05
+  FreezeTime: 0.1
   LaunchAnticipationTime: 1
   LaunchReleaseTime: 0.5
   keypitch: 1
