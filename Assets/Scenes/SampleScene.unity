@@ -1647,7 +1647,7 @@ MonoBehaviour:
   - {fileID: 8891583894884715859, guid: de9def3e28243c1458343b84b18abe26, type: 3}
   - {fileID: 8891583894884715859, guid: 85e00b389aaf90549912d1ed1ac6cb65, type: 3}
   - {fileID: 8891583894884715859, guid: 1d4bd9d51cb76324cb0b8961f1606677, type: 3}
-  DifficultyRange: {x: 0, y: 1}
+  DifficultyRange: {x: 0, y: -1}
   DifficultyModifier: {x: 0.03, y: 0.2}
   GemChance: 0
 --- !u!4 &679815738
