@@ -11,6 +11,7 @@ public class FireEnemy : Enemy
     public GameObject Fireball;
     public Transform ShootPoint;
     public float WaitTime;
+    public float MinWaitTime;
     public bool active;
     private void Start()
     {
@@ -25,7 +26,8 @@ public class FireEnemy : Enemy
     }
     IEnumerator WaitToShoot()
     {
-        yield return new WaitForSeconds(WaitTime / (1 + LevelManager.Instance.DifficultyRange.x));
+        float currentWaitTime = Mathf.Clamp(WaitTime / (1 + LevelManager.Instance.DifficultyRange.x),MinWaitTime, 100);
+        yield return new WaitForSeconds(currentWaitTime);
         if (active)
         {
             spriteRenderer.sprite = shoot;

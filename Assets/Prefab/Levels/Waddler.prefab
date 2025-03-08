@@ -589,8 +589,9 @@ MonoBehaviour:
   enemies: []
   keys: []
   gems: []
+  obstacles: []
   elementsToPlace: []
-  enemyRange: {x: 2, y: 7}
-  keyPerEnemyRange: {x: 3, y: 5}
+  enemyRange: {x: 2, y: 8}
+  keyPerEnemyRange: {x: 1, y: 3}
   radius: 7.2
   offset: 0

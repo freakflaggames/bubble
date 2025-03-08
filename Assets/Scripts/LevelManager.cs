@@ -5,6 +5,7 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     public List<GameObject> Levels = new List<GameObject>();
+    public List<GameObject> Obstacles = new List<GameObject>();
     public static LevelManager Instance;
     public Vector2 DifficultyRange;
     public Vector2 DifficultyModifier;
@@ -22,5 +23,9 @@ public class LevelManager : MonoBehaviour
         GameObject Level = Levels[randomLevelIndex];
         DifficultyRange += DifficultyModifier;
         return Level;
+    }
+    public GameObject GetRandomObstacle()
+    {
+        return Obstacles[Random.Range(0, Obstacles.Count)];
     }
 }
