@@ -44,8 +44,8 @@ Material:
     - _QueueOffset: 0
     - _Shiny: 0
     m_Colors:
-    - _Dark_Color: {r: 0.17063563, g: 0.11841177, b: 0.3882353, a: 0}
-    - _Lit_Color: {r: 0.30352503, g: 0.195225, b: 0.475, a: 0}
+    - _Dark_Color: {r: 0.18039216, g: 0.121568635, b: 0.4156863, a: 0}
+    - _Lit_Color: {r: 0.23137255, g: 0.16470589, b: 0.4745098, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &6034318852680229685
 MonoBehaviour:

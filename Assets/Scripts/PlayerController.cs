@@ -52,12 +52,15 @@ public class PlayerController : MonoBehaviour
     Vector2 targetInput;
 
     Vector2 travelPoint;
+    Vector2 travelVelocity;
 
     bool isAboutToTravel;
     bool travelling;
     bool shake;
     bool freezeReturn;
     public bool canDash;
+
+    public int slimeJumps;
 
     private void Awake()
     {
@@ -70,7 +73,7 @@ public class PlayerController : MonoBehaviour
         RotateSprite();
 
         //TODO: move camera shit to camera manager
-        if (freezeTimer > 0)
+        if (freezeTimer > 0 && !PauseMenu.Instance.paused)
         {
             Time.timeScale = 0;
             freezeTimer -= Time.unscaledDeltaTime;
@@ -78,7 +81,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if (!freezeReturn)
+            if (!freezeReturn && !PauseMenu.Instance.paused)
             {
                 Time.timeScale = 1;
                 freezeReturn = true;
@@ -136,16 +139,20 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if (travelling)
+        {
+            rigidbody.velocity = travelVelocity;
+        }
+
         for (int i = 0; i < collectedGems.Count; i++)
         {
-            float distanceInterval = 1.5f;
-            float smoothTime = 0.05f;
-            if (gameObject != null)
+            if (gameObject != null && collectedGems[i] != null)
             {
-                if (Vector3.Distance(collectedGems[i].transform.position, transform.position) > (i + 1) * distanceInterval)
-                {
-                    collectedGems[i].transform.position = Vector3.Lerp(collectedGems[i].transform.position, transform.position, smoothTime);
-                }
+                float distanceInterval = 2;
+                float smoothTime = 0.25f;
+                Vector3 diff = collectedGems[i].transform.position - transform.position;
+                Vector3 targetPos = diff.normalized + transform.position;
+                collectedGems[i].GetComponent<Rigidbody2D>().MovePosition(Vector3.Lerp(collectedGems[i].transform.position, targetPos, smoothTime * (i+1)));
             }
         }
     }
@@ -218,19 +225,21 @@ public class PlayerController : MonoBehaviour
         {
             Time.timeScale = 1;
         }
-        rigidbody.velocity = moveInput * StompSpeed;
+        if (slimeJumps > 0)
+        {
+            slimeJumps--;
+        }
+        else
+        {
+            rigidbody.velocity = moveInput * StompSpeed;
+        }
     }
     public void TravelToBubble(Transform star, Transform bubble)
     {
         //TODO: AHHHHHHHHHHHHHHHH
+        Time.timeScale = 1;
         ResetLineRenderer();
-        for (int i = 0; i < collectedGems.Count; i++)
-        {
-            ScoreManager.Instance.AddGemScore(0.2f * (i+1));
-            Destroy(collectedGems[i]);
-        }
         ScoreManager.Instance.AddPlanetScore();
-        collectedGems.Clear();
         Cinemachine.m_Follow = nextBubble.transform.GetChild(0);
         spriteRenderer.gameObject.SetActive(false);
         HandManager.Instance.StopGrabAnimation();
@@ -251,10 +260,10 @@ public class PlayerController : MonoBehaviour
                     nextBubble = bubble;
         travelPoint = bubble.position;
         isAboutToTravel = false;
-        travelling = true;
                     AudioManager.Instance.PlayHappySound();
                     spriteRenderer.sprite = stretch;
-        rigidbody.velocity = (travelPoint - (Vector2)transform.position).normalized * TravelSpeed;
+                    travelVelocity = (travelPoint - (Vector2)transform.position).normalized * TravelSpeed;
+                    travelling = true;
                     ScoreManager.Instance.HideScoreBonus();
                 });
     }
@@ -287,6 +296,7 @@ public class PlayerController : MonoBehaviour
         UnAnchorPlayer();
         if (collectedGems.Count > 0)
         {
+            AudioManager.Instance.PlaySound("poof", 0.9f, 1.1f);
             Instantiate(gemBurst, collectedGems[collectedGems.Count - 1].transform.position, Quaternion.identity);
             Destroy(collectedGems[0]);
             collectedGems.RemoveAt(0);
@@ -330,7 +340,7 @@ public class PlayerController : MonoBehaviour
                 AudioManager.Instance.PlaySound("metalhit", 0.8f, 1.1f);
                 AudioManager.Instance.PlayHitSound();
                 collision.gameObject.transform.DORotate(new Vector3(0, 0, Random.Range(-15, 15)), 0.1f);
-                collision.gameObject.transform.DOScale(1.1f, 0.1f).OnComplete(() => { collision.gameObject.transform.DOScale(1f, 0.1f); });
+                collision.gameObject.transform.DOScale(0.8f, 0.1f).OnComplete(() => { collision.gameObject.transform.DOScale(0.7f, 0.1f); });
             }
             else
             {
@@ -350,7 +360,6 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Key"))
         {
             Instantiate(starBurst, collision.gameObject.transform.position, Quaternion.identity);
-            ScoreManager.Instance.AddKeyScore();
             keysCollected++;
             AudioManager.Instance.PlayKeySound(keypitch);
             keypitch += 0.1f;
@@ -358,9 +367,14 @@ public class PlayerController : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Gem")) 
         {
+            Instantiate(gemBurst, transform.position, Quaternion.identity);
             GameObject gem = Instantiate(gemTrailPrefab, transform.position, Quaternion.identity);
+            gem.transform.DOScale(1.5f, 0.1f).SetEase(Ease.OutBack).OnComplete(() => { gem.transform.DOScale(1, 0.1f); });
+            gem.GetComponent<SpriteRenderer>().sprite = collision.GetComponent<SpriteRenderer>().sprite;
             collectedGems.Add(gem);
             Destroy(collision.gameObject);
+            float pitch = 1 + (0.1f * collectedGems.Count);
+            AudioManager.Instance.PlaySound("gempickup",pitch,pitch);
         }
     }
 }

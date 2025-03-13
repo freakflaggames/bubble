@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
+    public static PauseMenu Instance;
     public GameObject menu;
-    bool active;
+    public bool paused;
+    private void Awake()
+    {
+        Instance = this;
+    }
     public void TogglePauseMenu()
     {
-        active = !active;
-        menu.SetActive(active);
-        Time.timeScale = active ? 0 : 1;
+        paused = !paused;
+        menu.SetActive(paused);
+        Time.timeScale = paused ? 0 : 1;
     }
 }

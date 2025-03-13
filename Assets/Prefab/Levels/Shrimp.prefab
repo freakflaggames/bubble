@@ -584,18 +584,14 @@ MonoBehaviour:
   cannonPrefab: {fileID: 4797472489836107394, guid: eadf4888bc650f94c870bf33230d8e5a, type: 3}
   keyPrefab: {fileID: 7579014456015881368, guid: 17e1eca6a41815444ac581be6ed7f3c0, type: 3}
   enemyPrefab: {fileID: 6036902669308781413, guid: dfbc071a629a0aa4b8d29968a8e3d404, type: 3}
-  gemPrefab: {fileID: 7987394465463926523, guid: bb651f89d447b524fa04565716d722f3, type: 3}
+  gemPrefab: {fileID: 7987394465463926523, guid: d3086960a82d34e488324b3a327c4fea, type: 3}
   enemyManager: {fileID: 6323162993616848255, guid: 907bdf0d95ca37644b3d85d9acd4c2b2, type: 3}
-  obstaclePrefabs:
-  - {fileID: 8891583894884715859, guid: 1d4bd9d51cb76324cb0b8961f1606677, type: 3}
-  - {fileID: 8891583894884715859, guid: 85e00b389aaf90549912d1ed1ac6cb65, type: 3}
-  - {fileID: 8891583894884715859, guid: de9def3e28243c1458343b84b18abe26, type: 3}
   enemies: []
   keys: []
   gems: []
   obstacles: []
   elementsToPlace: []
-  enemyRange: {x: 1, y: 4}
+  enemyRange: {x: 1, y: 3}
   keyPerEnemyRange: {x: 1, y: 3}
   radius: 7
   offset: 0

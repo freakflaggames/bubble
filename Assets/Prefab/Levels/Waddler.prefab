@@ -584,14 +584,14 @@ MonoBehaviour:
   cannonPrefab: {fileID: 4797472489836107394, guid: eadf4888bc650f94c870bf33230d8e5a, type: 3}
   keyPrefab: {fileID: 7579014456015881368, guid: 17e1eca6a41815444ac581be6ed7f3c0, type: 3}
   enemyPrefab: {fileID: 2036576164749568150, guid: c95778b974bae9440b1d893afb090383, type: 3}
-  gemPrefab: {fileID: 7987394465463926523, guid: bb651f89d447b524fa04565716d722f3, type: 3}
+  gemPrefab: {fileID: 7987394465463926523, guid: aa6b5a3bf8359ae488500f12bbd03630, type: 3}
   enemyManager: {fileID: 6323162993616848255, guid: 907bdf0d95ca37644b3d85d9acd4c2b2, type: 3}
   enemies: []
   keys: []
   gems: []
   obstacles: []
   elementsToPlace: []
-  enemyRange: {x: 2, y: 8}
+  enemyRange: {x: 2, y: 4}
   keyPerEnemyRange: {x: 1, y: 3}
   radius: 7.2
   offset: 0

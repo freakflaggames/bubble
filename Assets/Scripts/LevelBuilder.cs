@@ -37,8 +37,9 @@ public class LevelBuilder : MonoBehaviour
 
         //spawn a random amount of enemies/keys based on difficulty
         int enemyCount = Random.Range(minEnemyDifficulty, maxEnemyDifficulty);
-        int gemCount = Random.Range(Mathf.RoundToInt(LevelManager.Instance.DifficultyRange.x), Mathf.RoundToInt(LevelManager.Instance.DifficultyRange.y));
-        int obstacleCount = Random.Range(Mathf.RoundToInt(LevelManager.Instance.DifficultyRange.x), Mathf.RoundToInt(LevelManager.Instance.DifficultyRange.y));
+        int gemCount = Random.Range(0, Mathf.RoundToInt(LevelManager.Instance.DifficultyRange.y + 0.5f));
+        gemCount = Mathf.Clamp(gemCount, 0, 3);
+        int obstacleCount = Random.Range(0, Mathf.RoundToInt(LevelManager.Instance.DifficultyRange.y));
         obstacleCount = Mathf.Clamp(obstacleCount, 0, 2);
         int keyCount = Mathf.Clamp(enemyCount * Random.Range(minKeyDifficulty, maxKeyDifficulty) - gemCount - obstacleCount,1,100);
 
@@ -75,7 +76,7 @@ public class LevelBuilder : MonoBehaviour
         int enemyPeriodicity = 0;
         if (keys.Count > 0 && enemies.Count > 0)
         {
-            enemyPeriodicity = (keys.Count / enemies.Count) + 1;
+            enemyPeriodicity = ((keys.Count + obstacles.Count + gems.Count) / enemies.Count) + 1;
         }
         for (int i = 0; i < totalCount; i++)
         {

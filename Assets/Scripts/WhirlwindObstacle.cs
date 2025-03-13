@@ -6,6 +6,7 @@ public class WhirlwindObstacle : MonoBehaviour
 {
     Transform whirlwindParent;
     public float rotateSpeed;
+    bool clockwise;
     float rot;
     void Start()
     {
@@ -16,10 +17,12 @@ public class WhirlwindObstacle : MonoBehaviour
         whirlwindParent = Instantiate(new GameObject(), transform.parent).transform;
         whirlwindParent.transform.position = transform.parent.position;
         transform.SetParent(whirlwindParent.transform);
+
+        clockwise = Random.Range(0, 2) == 0;
     }
     private void Update()
     {
-        rot += Time.deltaTime * rotateSpeed;
+        rot += Time.deltaTime * rotateSpeed * (clockwise ? 1 : -1);
         whirlwindParent.transform.rotation = Quaternion.Euler(0, 0, rot);
     }
     private void OnTriggerEnter2D(Collider2D collision)
