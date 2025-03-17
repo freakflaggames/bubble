@@ -204,7 +204,6 @@ public class PlayerController : MonoBehaviour
     }
     public void Dash()
     {
-        UnAnchorPlayer();
         startInputGraphic.gameObject.SetActive(false);
         currentInputGraphic.gameObject.SetActive(false);
 
@@ -227,10 +226,13 @@ public class PlayerController : MonoBehaviour
         }
         if (slimeJumps > 0)
         {
+            transform.parent.parent.DOScale(7.5f, 0.1f).SetEase(Ease.OutBack).OnComplete(() => { transform.parent.parent.DOScale(6.5f, 0.1f).SetEase(Ease.OutBack); });
+            AudioManager.Instance.PlaySound("slimeenter", 0.9f, 1.1f);
             slimeJumps--;
         }
         else
         {
+            UnAnchorPlayer();
             rigidbody.velocity = moveInput * StompSpeed;
         }
     }
@@ -373,8 +375,12 @@ public class PlayerController : MonoBehaviour
             gem.GetComponent<SpriteRenderer>().sprite = collision.GetComponent<SpriteRenderer>().sprite;
             collectedGems.Add(gem);
             Destroy(collision.gameObject);
-            float pitch = 1 + (0.1f * collectedGems.Count);
+            float pitch = 1 + (0.25f * collectedGems.Count);
             AudioManager.Instance.PlaySound("gempickup",pitch,pitch);
+        }
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            HitByEnemy(collision.gameObject.transform);
         }
     }
 }

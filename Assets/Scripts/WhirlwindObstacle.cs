@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class WhirlwindObstacle : MonoBehaviour
 {
@@ -33,5 +34,8 @@ public class WhirlwindObstacle : MonoBehaviour
             collision.gameObject.transform.SetParent(transform);
             collision.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
     }
 }

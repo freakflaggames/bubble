@@ -27,9 +27,9 @@ public class CannonManager : MonoBehaviour
         {
             FindAnyObjectByType<PlayerController>().GetComponent<PlayerController>().bgOverlay.DOColor(new Color(1, 1, 1, 0), 1).OnComplete(() =>
             {
-                FindAnyObjectByType<PlayerController>().GetComponent<PlayerController>().bgOverlay.sprite = bgOverlay;
                 FindAnyObjectByType<PlayerController>().GetComponent<PlayerController>().bgOverlay.DOColor(new Color(1, 1, 1, 0), .4f).OnComplete(() =>
                 {
+                    FindAnyObjectByType<PlayerController>().GetComponent<PlayerController>().bgOverlay.sprite = bgOverlay;
                     FindAnyObjectByType<PlayerController>().GetComponent<PlayerController>().bgOverlay.DOColor(new Color(1, 1, 1, 1), 1);
                 });
             });

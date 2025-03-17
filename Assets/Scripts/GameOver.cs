@@ -8,77 +8,51 @@ using DG.Tweening;
 public class GameOver : MonoBehaviour
 {
     public GameObject starBurst;
-    public float scoreAddTime, scoreAddTimeMax;
-    public float timeModifier;
+    public float scoreAddTime;
     public float pitch;
-    public int keysLeft, worldsLeft;
-    public int keys, worlds, score;
-    public TextMeshProUGUI worldScore, keyScore, scoreText;
+    public int score;
+    int _score;
+    public TextMeshProUGUI worldScore, keyScore, scoreText, hiscoreText;
     private void Start()
     {
-        worldsLeft = PlayerPrefs.GetInt("worlds");
-        keysLeft = PlayerPrefs.GetInt("keys");
+        hiscoreText.text = PlayerPrefs.GetInt("highscore") + "";
+        score = PlayerPrefs.GetInt("score");
         StartCoroutine(WaitToAddScore());
     }
     private void Update()
     {
-        worldScore.text = worlds + "";
-        keyScore.text = keys + "";
-        scoreText.text = score + "";
+        scoreText.text = _score + "";
     }
     IEnumerator WaitToAddScore()
     {
-        yield return new WaitForSeconds(.5f);
-        StartCoroutine(AddWorldScore());
+        yield return new WaitForSeconds(0);
+        StartCoroutine(AddScore());
     }
-    IEnumerator AddWorldScore()
+    IEnumerator AddScore()
     {
+        DOTween.To(() => _score, x => _score = x, score, scoreAddTime).SetEase(Ease.OutExpo);
         yield return new WaitForSeconds(scoreAddTime);
-        AudioManager.Instance.PlaySound("bounce", pitch, pitch);
-        pitch += 0.1f;
-        worlds++;
-        worldsLeft--;
-        score += 100;
-        scoreText.transform.DOScale(1.1f, scoreAddTime/2).SetEase(Ease.OutExpo).OnComplete(() =>
+        AudioManager.Instance.PlaySound("keyscollected", 1, 1);
+        scoreText.transform.DOScale(1.25f, 0.35f).SetEase(Ease.OutExpo).OnComplete(() =>
         {
-            scoreText.transform.DOScale(1, scoreAddTime / 2).SetEase(Ease.OutExpo);
+            Instantiate(starBurst, new Vector3(-2, 0), Quaternion.identity);
+            scoreText.transform.DOScale(1, 0.15f).SetEase(Ease.OutExpo);
+            StartCoroutine(WaitToCheckBestScore());
         });
-        scoreAddTime /= timeModifier;
-        if (worldsLeft > 0)
-        {
-            StartCoroutine(AddWorldScore());
-        }
-        else
-        {
-            pitch = 1;
-            scoreAddTime = scoreAddTimeMax;
-            StartCoroutine(AddKeyScore());
-        }
     }
-    IEnumerator AddKeyScore()
+
+    IEnumerator WaitToCheckBestScore()
     {
-        AudioManager.Instance.PlayKeySound(pitch);
-        pitch += 0.1f;
-        yield return new WaitForSeconds(scoreAddTime);
-        keys++;
-        keysLeft--;
-        score += 10;
-        scoreAddTime /= timeModifier;
-        scoreText.transform.DOScale(1.1f, scoreAddTime / 2).SetEase(Ease.OutExpo).OnComplete(() =>
+        yield return new WaitForSeconds(0.5f);
+        if (score > PlayerPrefs.GetInt("highscore"))
         {
-            scoreText.transform.DOScale(1, scoreAddTime / 2).SetEase(Ease.OutExpo);
-        });
-        if (keysLeft > 0)
-        {
-            StartCoroutine(AddKeyScore());
-        }
-        else
-        {
-            scoreText.transform.DOScale(1.25f, 0.35f).SetEase(Ease.OutExpo).OnComplete(() =>
+            AudioManager.Instance.PlaySound("keyscollected", 2, 2);
+            PlayerPrefs.SetInt("highscore", score);
+            hiscoreText.text = PlayerPrefs.GetInt("highscore") + "";
+            hiscoreText.transform.DOScale(1.25f, 0.35f).SetEase(Ease.OutExpo).OnComplete(() =>
             {
-                AudioManager.Instance.PlaySound("keyscollected", 1, 1);
-                Instantiate(starBurst, new Vector3(1.5f, 0), Quaternion.identity);
-                scoreText.transform.DOScale(1, 0.15f).SetEase(Ease.OutExpo);
+                Instantiate(starBurst, new Vector3(3.5f, 0), Quaternion.identity);
+                hiscoreText.transform.DOScale(1, 0.15f).SetEase(Ease.OutExpo);
             });
         }
     }

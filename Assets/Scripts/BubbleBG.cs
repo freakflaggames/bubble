@@ -8,6 +8,7 @@ public class BubbleBG : MonoBehaviour
 {
     GameObject player;
     bool startWobble = true, endWobble = false;
+    public bool disableWobble;
     private void Start()
     {
         player = FindAnyObjectByType<PlayerController>().gameObject;
@@ -38,19 +39,23 @@ public class BubbleBG : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bubble"))
         {
+            print("i was destroyed");
             Destroy(transform.parent.gameObject);
         }
     }
     void Wobble()
     {
-        float startScale = 0.47f;
-        AudioManager.Instance.PlaySound("bounce", 0.9f, 1.1f);
-        transform.DOScale(new Vector2(startScale*1.1f, startScale*0.9f), 0.1f).SetEase(Ease.OutExpo).OnComplete(() =>
+        if (!disableWobble)
         {
-            transform.DOScale(new Vector2(startScale*0.9f, startScale*1.1f), 0.1f).SetEase(Ease.OutExpo).OnComplete(() =>
+            float startScale = 0.47f;
+            AudioManager.Instance.PlaySound("bounce", 0.9f, 1.1f);
+            transform.DOScale(new Vector2(startScale * 1.1f, startScale * 0.9f), 0.1f).SetEase(Ease.OutExpo).OnComplete(() =>
             {
-                transform.DOScale(new Vector2(startScale, startScale), 0.2f).SetEase(Ease.OutExpo);
+                transform.DOScale(new Vector2(startScale * 0.9f, startScale * 1.1f), 0.1f).SetEase(Ease.OutExpo).OnComplete(() =>
+                {
+                    transform.DOScale(new Vector2(startScale, startScale), 0.2f).SetEase(Ease.OutExpo);
+                });
             });
-        });
+        }
     }
 }

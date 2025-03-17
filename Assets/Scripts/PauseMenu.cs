@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -16,5 +17,17 @@ public class PauseMenu : MonoBehaviour
         paused = !paused;
         menu.SetActive(paused);
         Time.timeScale = paused ? 0 : 1;
+        if (paused)
+        {
+            AudioManager.Instance.StopMusic();
+        }
+        else
+        {
+            AudioManager.Instance.PlayMusic();
+        }
+    }
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("Title");
     }
 }

@@ -10,7 +10,6 @@ public class Fireball : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<PlayerController>().HitByEnemy(transform);
             Destroy(gameObject);
         }
         else if (collision.gameObject.CompareTag("Wall"))

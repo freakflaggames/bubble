@@ -8,6 +8,7 @@ using DG.Tweening;
 public class HandManager : MonoBehaviour
 {
     //TODO: move this to a timermanager or something
+    public Transform goddess;
     public Transform endTransition;
     public SpriteRenderer endBlack;
     public Animator animator;
@@ -34,7 +35,7 @@ public class HandManager : MonoBehaviour
         {
             timer -= Time.deltaTime;
         }
-        if (timer <= 2.1f)
+        if (timer <= 1.1F)
         {
             if (!grabbing)
             {
@@ -46,12 +47,12 @@ public class HandManager : MonoBehaviour
         {
             if (active)
             {
+                Time.timeScale = 1;
                 Destroy(timerText.transform.parent.gameObject);
                 PlayerController Player = FindAnyObjectByType<PlayerController>();
                 int worlds = Player.worldsTraveled;
                 int keys = Player.keysCollected;
-                PlayerPrefs.SetInt("worlds", worlds);
-                PlayerPrefs.SetInt("keys", keys);
+                PlayerPrefs.SetInt("score", ScoreManager.Instance.score);
                 AudioManager.Instance.StopMusic();
                 AudioManager.Instance.PlaySound("pop", 1, 1);
                 AudioManager.Instance.PlaySound("choke", 1, 1);
@@ -82,9 +83,9 @@ public class HandManager : MonoBehaviour
     public void ResetTimer()
     {
         timerMax -= timeDecay;
-        if (timerMax < 2.25f)
+        if (timerMax < 1)
         {
-            timerMax = 2.25f;
+            timerMax = 1;
         }
         timer = timerMax;
         active = false;

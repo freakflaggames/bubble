@@ -15,8 +15,10 @@ public class SlimeObstacle : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<PlayerController>())
         {
+            transform.parent.DOScale(7.5f, 0.1f).SetEase(Ease.OutBack).OnComplete(() => { transform.parent.DOScale(6.5f, 0.1f).SetEase(Ease.OutBack); });
+            AudioManager.Instance.PlaySound("slimeenter", 0.9f, 1.1f);
             collision.gameObject.GetComponent<PlayerController>().slimeJumps = 1;
-            collision.gameObject.transform.position = transform.position;
+            collision.gameObject.transform.position = transform.position + transform.up;
             collision.gameObject.transform.SetParent(transform);
             collision.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
@@ -25,7 +27,11 @@ public class SlimeObstacle : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            transform.parent.DOScale(7.5f, 0.1f).SetEase(Ease.OutBack).OnComplete(() => { transform.parent.DOScale(6.5f, 0.1f).SetEase(Ease.OutBack); });
+            AudioManager.Instance.PlaySound("slimeenter", 0.9f, 1.1f);
             collision.gameObject.GetComponent<PlayerController>().slimeJumps = 0;
+            collision.gameObject.GetComponent<PlayerController>().UnAnchorPlayer();
+            collision.gameObject.transform.localScale = Vector3.one * 1.5f;
         }
     }
 }
