@@ -60,6 +60,11 @@ public class PlayerController : MonoBehaviour
     bool freezeReturn;
     public bool canDash;
 
+    bool firstLevel;
+    bool firstDrag;
+    bool firstKey;
+    bool firstCannon;
+
     public int slimeJumps;
 
     private void Awake()
@@ -67,6 +72,12 @@ public class PlayerController : MonoBehaviour
         collider = GetComponent<CircleCollider2D>();
         rigidbody = GetComponent<Rigidbody2D>();
         line.positionCount = 2;
+    }
+    private void Start()
+    {
+        collider.enabled = false;
+        travelVelocity = (nextBubble.position - transform.position).normalized * TravelSpeed;
+        travelling = true;
     }
     private void Update()
     {
@@ -201,6 +212,12 @@ public class PlayerController : MonoBehaviour
             float width = line.startWidth;
             line.material.mainTextureScale = new Vector2(length / width, 1.0f);
         }
+
+        if (!firstDrag)
+        {
+            Tutorial.Instance.NextSection();
+            firstDrag = true;
+        }
     }
     public void Dash()
     {
@@ -238,6 +255,11 @@ public class PlayerController : MonoBehaviour
     }
     public void TravelToBubble(Transform star, Transform bubble)
     {
+        if (!firstCannon)
+        {
+            Tutorial.Instance.NextSection();
+            firstCannon = true;
+        }
         //TODO: AHHHHHHHHHHHHHHHH
         Time.timeScale = 1;
         ResetLineRenderer();
@@ -251,7 +273,10 @@ public class PlayerController : MonoBehaviour
         isAboutToTravel = true;
         spriteRenderer.transform.rotation = Quaternion.Euler(0, 0, 0);
         collider.enabled = false;
-        transform.position = star.position;
+        if (star != null)
+        {
+            transform.position = star.position;
+        }
         rigidbody.velocity = Vector3.zero;
 
         DOTween.To(() => targetLensSize, x => targetLensSize = x, 5, LaunchAnticipationTime).SetEase(Ease.OutExpo).
@@ -271,8 +296,16 @@ public class PlayerController : MonoBehaviour
     }
     public void LandOnBubble()
     {
+        if (!firstLevel)
+        {
+            Tutorial.Instance.NextSection();
+            firstLevel = true;
+        }
+        else
+        {
+            HandManager.Instance.StartTimer();
+        }
         worldsTraveled++;
-        HandManager.Instance.StartTimer();
         spriteRenderer.sprite = neutral;
         rigidbody.velocity /= 10;
         canDash = true;
@@ -361,6 +394,11 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Key"))
         {
+            if (!firstKey)
+            {
+                Tutorial.Instance.NextSection();
+                firstKey = true;
+            }
             Instantiate(starBurst, collision.gameObject.transform.position, Quaternion.identity);
             keysCollected++;
             AudioManager.Instance.PlayKeySound(keypitch);

@@ -4,56 +4,99 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using DG.Tweening;
+using System.Linq;
 
 public class GameOver : MonoBehaviour
 {
+    public int currentScore;
+    float smoothedScore;
+    int highestIndex;
     public GameObject starBurst;
-    public float scoreAddTime;
-    public float pitch;
-    public int score;
-    int _score;
-    public TextMeshProUGUI worldScore, keyScore, scoreText, hiscoreText;
+    public GameObject inputOverlay;
+    public GameObject leaderboardBar;
+    public Transform leaderboardParent;
+    public TextMeshProUGUI scoreText;
+    public TMP_InputField nameInput;
+    public Image blackOverlay;
+    public bool clear;
     private void Start()
     {
-        hiscoreText.text = PlayerPrefs.GetInt("highscore") + "";
-        score = PlayerPrefs.GetInt("score");
-        StartCoroutine(WaitToAddScore());
+        currentScore = PlayerPrefs.GetInt("score");
+        highestIndex = PlayerPrefs.GetInt("highestIndex");
+        if (clear)
+        {
+            ClearScores();
+        }
+        blackOverlay.DOColor(new Color(0, 0, 0, 1), .5f).OnComplete(()=> { blackOverlay.DOColor(new Color(0, 0, 0, 0), .5f); });
     }
     private void Update()
     {
-        scoreText.text = _score + "";
+        scoreText.text = Mathf.Round(smoothedScore) + "";
     }
-    IEnumerator WaitToAddScore()
+    
+    public void ClearScores()
     {
-        yield return new WaitForSeconds(0);
-        StartCoroutine(AddScore());
+        highestIndex = 0;
+        PlayerPrefs.SetInt("highestIndex", highestIndex);
     }
-    IEnumerator AddScore()
+    public void CloseOverlay()
     {
-        DOTween.To(() => _score, x => _score = x, score, scoreAddTime).SetEase(Ease.OutExpo);
-        yield return new WaitForSeconds(scoreAddTime);
-        AudioManager.Instance.PlaySound("keyscollected", 1, 1);
-        scoreText.transform.DOScale(1.25f, 0.35f).SetEase(Ease.OutExpo).OnComplete(() =>
-        {
-            Instantiate(starBurst, new Vector3(-2, 0), Quaternion.identity);
-            scoreText.transform.DOScale(1, 0.15f).SetEase(Ease.OutExpo);
-            StartCoroutine(WaitToCheckBestScore());
-        });
+        inputOverlay.gameObject.SetActive(false);
+        SortLeaderboardScores();
     }
 
-    IEnumerator WaitToCheckBestScore()
+    public void SubmitScore()
     {
-        yield return new WaitForSeconds(0.5f);
-        if (score > PlayerPrefs.GetInt("highscore"))
+        string name = nameInput.text;
+        PlayerPrefs.SetInt(name, currentScore);
+        PlayerPrefs.SetString(highestIndex+"", name);
+        PlayerPrefs.SetInt("highestIndex", highestIndex + 1);
+        highestIndex++;
+        CloseOverlay();
+    }
+    public void SortLeaderboardScores()
+    {
+        var scores = new List<KeyValuePair<string,int>>();
+        for (int i =0; i < highestIndex; i++)
         {
-            AudioManager.Instance.PlaySound("keyscollected", 2, 2);
-            PlayerPrefs.SetInt("highscore", score);
-            hiscoreText.text = PlayerPrefs.GetInt("highscore") + "";
-            hiscoreText.transform.DOScale(1.25f, 0.35f).SetEase(Ease.OutExpo).OnComplete(() =>
-            {
-                Instantiate(starBurst, new Vector3(3.5f, 0), Quaternion.identity);
-                hiscoreText.transform.DOScale(1, 0.15f).SetEase(Ease.OutExpo);
-            });
+            string name = PlayerPrefs.GetString(i + "");
+            int score = PlayerPrefs.GetInt(name);
+            scores.Add(new KeyValuePair<string, int>(name, score));
         }
+        scores.Sort((x, y) => y.Value.CompareTo(x.Value));
+        for (int i = 0; i < scores.Count; i++)
+        {
+            string name = scores[i].Key;
+            PlayerPrefs.SetString(i + "", name);
+        }
+        GenerateLeaderboardBars();
+    }
+    public void GenerateLeaderboardBars()
+    {
+        for (int i = 0; i < highestIndex; i++)
+        {
+            string name = PlayerPrefs.GetString(i + "");
+            int score = PlayerPrefs.GetInt(name);
+            GenerateLeaderboardBar(i + 1, name, score);
+        }
+        RevealScore();
+    }
+    public void RevealScore()
+    {
+        scoreText.transform.DOScale(1.5f, 1).SetEase(Ease.OutExpo).OnComplete(() =>
+        {
+            scoreText.transform.DOScale(1, 0.25f).SetEase(Ease.OutExpo);
+            Vector3 particlePosition = new Vector3(-4.5f, 0);
+            Instantiate(starBurst, particlePosition, Quaternion.identity);
+            AudioManager.Instance.PlaySound("keyscollected",1,1);
+        });
+        DOTween.To(() => smoothedScore, x => smoothedScore = x, currentScore, 1).SetEase(Ease.OutExpo);
+    }
+    public void GenerateLeaderboardBar(int index, string name, int score)
+    {
+        LeaderboardBar bar = Instantiate(leaderboardBar, leaderboardParent).GetComponent<LeaderboardBar>();
+        bar.index.text = index + "";
+        bar.name.text = name;
+        bar.score.text = score + "";
     }
 }

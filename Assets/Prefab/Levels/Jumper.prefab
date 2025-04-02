@@ -536,6 +536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054b9231906937e4da30979be8eff603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disableWobble: 0
 --- !u!1 &5707072576663861050
 GameObject:
   m_ObjectHideFlags: 0
@@ -584,14 +585,14 @@ MonoBehaviour:
   cannonPrefab: {fileID: 4797472489836107394, guid: eadf4888bc650f94c870bf33230d8e5a, type: 3}
   keyPrefab: {fileID: 7579014456015881368, guid: 17e1eca6a41815444ac581be6ed7f3c0, type: 3}
   enemyPrefab: {fileID: 6036902669308781413, guid: 9ac2107f3cc22154682040099c19ff58, type: 3}
-  gemPrefab: {fileID: 7987394465463926523, guid: 2b42d5b78c73ca94ba468b6deecf5f66, type: 3}
+  gemPrefab: {fileID: 7987394465463926523, guid: bb651f89d447b524fa04565716d722f3, type: 3}
   enemyManager: {fileID: 6323162993616848255, guid: 907bdf0d95ca37644b3d85d9acd4c2b2, type: 3}
   enemies: []
   keys: []
   gems: []
   obstacles: []
   elementsToPlace: []
-  enemyRange: {x: 1, y: 3}
+  enemyRange: {x: 1, y: 5}
   keyPerEnemyRange: {x: 1, y: 3}
   radius: 7
   offset: 0

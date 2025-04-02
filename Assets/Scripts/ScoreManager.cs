@@ -30,8 +30,11 @@ public class ScoreManager : MonoBehaviour
         Transform scoreBonus = baseScoreBonus.transform.parent;
         scoreBonus.gameObject.SetActive(true);
         scoreBonus.transform.localScale = Vector3.zero;
-        baseScoreBonus.text = "+100";
-        score += 100;
+        int timeScore = Mathf.RoundToInt(HandManager.Instance.timer / HandManager.Instance.timerMax * 100);
+        timeScore = Mathf.RoundToInt(timeScore / 10);
+        timeScore = Mathf.RoundToInt((timeScore * 10)+10);
+        baseScoreBonus.text = "+" + timeScore;
+        score += timeScore;
 
         int keyscore = player.keysCollected * 10;
         int gemscore = player.collectedGems.Count * 50;
@@ -39,10 +42,6 @@ public class ScoreManager : MonoBehaviour
         int scoreBonusCount = 1 + (keyscore > 0 ? 1 : 0) + (gemscore > 0 ? 1 : 0);
         scoreBonusTime = scoringTime / scoreBonusCount;
 
-        if (player.collectedGems.Count > 0)
-        {
-            gemScoreIcon.sprite = player.collectedGems[0].GetComponent<SpriteRenderer>().sprite;
-        }
         for (int i = 0; i < player.collectedGems.Count; i++)
         {
             Destroy(player.collectedGems[i]);
@@ -68,7 +67,6 @@ public class ScoreManager : MonoBehaviour
             }
 
             float keyPitch = 1 + (0.1f * (player.keysCollected - numKeysToScore));
-            print(keyPitch);
             AudioManager.Instance.PlayKeySound(keyPitch);
             keyScore.transform.DOScale(1.1f, time / 2).SetEase(Ease.OutBack).OnComplete(() => {
                 if (_score > 0)
