@@ -1,0 +1,717 @@
+fileFormatVersion: 2
+guid: 9781fa42bf2f7294c8a5b176a87e9877
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 300
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PWP title screen_Star_0
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 4023
+        width: 157
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35726a7a127970b41ab99b7816465c65
+      internalID: -671698734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PWP title screen_Star_1
+      rect:
+        serializedVersion: 2
+        x: 2333
+        y: 3834
+        width: 246
+        height: 281
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 802db869505fe1e43ac7e8d32fa57834
+      internalID: 918837584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PWP title screen_Star_2
+      rect:
+        serializedVersion: 2
+        x: 4070
+        y: 3920
+        width: 242
+        height: 279
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0adc4f387cc1a314a99883ddb64ed3a4
+      internalID: 449074118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PWP title screen_Star_3
+      rect:
+        serializedVersion: 2
+        x: 1287
+        y: 3838
+        width: 156
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a57f71d7a21e35d41815d505724b6a64
+      internalID: -343096926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PWP title screen_Star_4
+      rect:
+        serializedVersion: 2
+        x: 7095
+        y: 3838
+        width: 153
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f89687c1b2b48144e84cb387ec740135
+      internalID: 2092782400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PWP title screen_Star_5
+      rect:
+        serializedVersion: 2
+        x: 5155
+        y: 3375
+        width: 246
+        height: 281
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df9fa2e37280ff6458b2e1e3db031f5c
+      internalID: -1073081414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PWP title screen_Star_6
+      rect:
+        serializedVersion: 2
+        x: 1169
+        y: 2952
+        width: 246
+        height: 281
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb22d07d60742674b83bc3ce6494d938
+      internalID: 978909747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PWP title screen_Star_7
+      rect:
+        serializedVersion: 2
+        x: 3796
+        y: 2952
+        width: 156
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc704878d5218f147a0d101ab627030f
+      internalID: 806630530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PWP title screen_Star_8
+      rect:
+        serializedVersion: 2
+        x: 5938
+        y: 3037
+        width: 246
+        height: 281
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8de0702af2bff3748a3d8f1b746ed68f
+      internalID: 1034568480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PWP title screen_Star_9
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 1842
+        width: 245
+        height: 275
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca74fcbb1414ebb49b57227d70a64006
+      internalID: 1601755751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PWP title screen_Star_10
+      rect:
+        serializedVersion: 2
+        x: 2785
+        y: 2543
+        width: 153
+        height: 177
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6002ec16b50b4ea4eb8a92cc0d99322c
+      internalID: -2006439885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PWP title screen_Star_11
+      rect:
+        serializedVersion: 2
+        x: 5604
+        y: 2578
+        width: 156
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f73fa440ed4b98948a08e7282ffb95c0
+      internalID: 1637327263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PWP title screen_Star_12
+      rect:
+        serializedVersion: 2
+        x: 7049
+        y: 2681
+        width: 240
+        height: 278
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3fc093cbdf6fe54aa78682a19292ce1
+      internalID: 2010201067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PWP title screen_Star_13
+      rect:
+        serializedVersion: 2
+        x: 4372
+        y: 2340
+        width: 157
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b8d6c157af450548ac5c991b39574b8
+      internalID: 8665673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PWP title screen_Star_14
+      rect:
+        serializedVersion: 2
+        x: 1902
+        y: 1977
+        width: 153
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 290cf1b8aad53e84e88c19050276e06a
+      internalID: 1667750870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PWP title screen_Star_15
+      rect:
+        serializedVersion: 2
+        x: 3472
+        y: 1831
+        width: 245
+        height: 281
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94a6cab7d4caac1409362791fb46351f
+      internalID: -1501418409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PWP title screen_Star_16
+      rect:
+        serializedVersion: 2
+        x: 6284
+        y: 1884
+        width: 153
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8d4294b789f4894f9ce7f442a62253b
+      internalID: -1514410268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PWP title screen_Star_17
+      rect:
+        serializedVersion: 2
+        x: 1066
+        y: 1604
+        width: 157
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0e842b87ec507e4bb36e7701dc01640
+      internalID: 807896383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PWP title screen_Star_18
+      rect:
+        serializedVersion: 2
+        x: 2104
+        y: 1311
+        width: 154
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73d1d105fbaa07f46b3d7209d8b0999f
+      internalID: -543361753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PWP title screen_Star_19
+      rect:
+        serializedVersion: 2
+        x: 5679
+        y: 1393
+        width: 153
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e309c54a800568747bb9d8b224686ce6
+      internalID: 110489263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PWP title screen_Star_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 680
+        width: 147
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b61673f724885c041aef83d00f2cb9b4
+      internalID: 1288095032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PWP title screen_Star_21
+      rect:
+        serializedVersion: 2
+        x: 4960
+        y: 931
+        width: 156
+        height: 174
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38ca0b4fcb22d7f42b4f596ef59b5313
+      internalID: 1349282262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PWP title screen_Star_22
+      rect:
+        serializedVersion: 2
+        x: 6714
+        y: 1049
+        width: 246
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01cfbf0d14bf19146ae437034764c4b5
+      internalID: 508334539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PWP title screen_Star_23
+      rect:
+        serializedVersion: 2
+        x: 5561
+        y: 443
+        width: 246
+        height: 281
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ed65c262cfed7143b714d6d8cbb4cba
+      internalID: -1039143513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PWP title screen_Star_24
+      rect:
+        serializedVersion: 2
+        x: 6540
+        y: 411
+        width: 154
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1743e204635b63c419f22989d412c3c5
+      internalID: -2127862709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PWP title screen_Star_25
+      rect:
+        serializedVersion: 2
+        x: 1543
+        y: 80
+        width: 245
+        height: 281
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b75d769d171c2dc4f92553aa7b4ed26b
+      internalID: 759775458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PWP title screen_Star_26
+      rect:
+        serializedVersion: 2
+        x: 4373
+        y: 0
+        width: 156
+        height: 174
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74463ab1030e8bd4b95633f0ccead97b
+      internalID: 978516840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      PWP title screen_Star_0: -671698734
+      PWP title screen_Star_1: 918837584
+      PWP title screen_Star_10: -2006439885
+      PWP title screen_Star_11: 1637327263
+      PWP title screen_Star_12: 2010201067
+      PWP title screen_Star_13: 8665673
+      PWP title screen_Star_14: 1667750870
+      PWP title screen_Star_15: -1501418409
+      PWP title screen_Star_16: -1514410268
+      PWP title screen_Star_17: 807896383
+      PWP title screen_Star_18: -543361753
+      PWP title screen_Star_19: 110489263
+      PWP title screen_Star_2: 449074118
+      PWP title screen_Star_20: 1288095032
+      PWP title screen_Star_21: 1349282262
+      PWP title screen_Star_22: 508334539
+      PWP title screen_Star_23: -1039143513
+      PWP title screen_Star_24: -2127862709
+      PWP title screen_Star_25: 759775458
+      PWP title screen_Star_26: 978516840
+      PWP title screen_Star_3: -343096926
+      PWP title screen_Star_4: 2092782400
+      PWP title screen_Star_5: -1073081414
+      PWP title screen_Star_6: 978909747
+      PWP title screen_Star_7: 806630530
+      PWP title screen_Star_8: 1034568480
+      PWP title screen_Star_9: 1601755751
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
