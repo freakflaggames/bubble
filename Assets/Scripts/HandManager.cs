@@ -10,13 +10,15 @@ public class HandManager : MonoBehaviour
     //TODO: move this to a timermanager or something
     public Transform goddess;
     public Transform endTransition;
+    public Transform UIparent;
     public SpriteRenderer endBlack;
     public Animator animator;
     public float timer, timerMax, timeDecay;
     public bool active;
+    bool flashed;
     public bool grabbing;
     public static HandManager Instance;
-    public Image timerFill;
+    public Image timerFill, timerDangerOverlay;
     public TextMeshProUGUI timerText;
     private void Awake()
     {
@@ -30,10 +32,20 @@ public class HandManager : MonoBehaviour
     private void Update()
     {
         timerText.text = Mathf.Round(timer) + "";
-        timerFill.fillAmount = Mathf.Lerp(0.43f, 0.83f,timer / 10f);
+        timerFill.fillAmount = timer / timerMax;
         if (active)
         {
             timer -= Time.deltaTime;
+        }
+        if (timer < 3 && !flashed && active)
+        {
+            flashed = true;
+            timerDangerOverlay.DOColor(new Color(1, 0, 0, 0.5f), 0.5f / 2).OnComplete(() => {
+                timerDangerOverlay.DOColor(new Color(1, 0, 0, 0f), 0.5f / 2).OnComplete(() =>
+                {
+                    flashed = false;
+                });
+            });
         }
         if (timer <= 1.1F)
         {
@@ -48,7 +60,7 @@ public class HandManager : MonoBehaviour
             if (active)
             {
                 Time.timeScale = 1;
-                Destroy(timerText.transform.parent.gameObject);
+                UIparent.gameObject.SetActive(false);
                 PlayerController Player = FindAnyObjectByType<PlayerController>();
                 int worlds = Player.worldsTraveled;
                 int keys = Player.keysCollected;
@@ -73,7 +85,9 @@ public class HandManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         AudioManager.Instance.PlaySound("slide", 1, 1);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1.5f);
+        endBlack.DOColor(new Color(0, 0, 0, 1),.5f);
+        yield return new WaitForSeconds(.5f);
         SceneManager.LoadScene("GameOver");
     }
     public void StartTimer()
