@@ -21,11 +21,19 @@ public class WipeTransition : MonoBehaviour
     }
     public void Wipe()
     {
-        startOverlay.transform.DOLocalMoveX(moveAmount, moveTime).OnComplete(()=> {
-            if (loadScene)
-            {
-                SceneManager.LoadScene("SampleScene");
-            }
+        float time = 0;
+        if (start)
+        {
+            time = 0.5f;
+        }
+        startOverlay.transform.DOScale(1, time).OnComplete(() =>
+        {
+            startOverlay.transform.DOLocalMoveX(moveAmount, moveTime).OnComplete(() => {
+                if (loadScene)
+                {
+                    SceneManager.LoadScene("SampleScene");
+                }
+            });
         });
     }
 }

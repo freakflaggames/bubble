@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] clips;
     public AudioClip[] hitClips;
     public AudioClip[] happyClips;
+    public AudioClip[] nomClips;
     public Dictionary<string, AudioClip> Clips = new Dictionary<string, AudioClip>();
     public AudioSource source, windupSource, keySource, music, voxsource;
     private void Awake()
@@ -35,10 +36,14 @@ public class AudioManager : MonoBehaviour
     public void PlayHappySound()
     {
         int rand = Random.Range(0, voxSoundChance);
-        if (rand == voxSoundChance - 1)
+        if (rand == voxSoundChance - 1 && !voxsource.isPlaying)
         {
             voxsource.PlayOneShot(happyClips[Random.Range(0, happyClips.Length)]);
         }
+    }
+    public void PlayNomSound()
+    {
+        voxsource.PlayOneShot(nomClips[Random.Range(0, nomClips.Length)]);
     }
     public void PlayKeySound(float pitch)
     {

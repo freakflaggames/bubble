@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public SpriteRenderer bgOverlay;
 
-    public Sprite neutral, crouch, stretch;
+    public Sprite neutral, crouch, stretch, hurt;
 
     Rigidbody2D rigidbody;
 
@@ -339,6 +339,7 @@ public class PlayerController : MonoBehaviour
         rigidbody.velocity = (transform.position - enemy.transform.position) * HitForce;
         AudioManager.Instance.PlayHitSound();
         AudioManager.Instance.PlaySound("dodgeball", 0.8f, 1.1f);
+        spriteRenderer.sprite = hurt;
         shake = true;
         freezeTimer = FreezeTime;
     }
@@ -354,7 +355,10 @@ public class PlayerController : MonoBehaviour
             {
                 spriteRenderer.transform.DOScale(1, 0.1f).SetEase(Ease.OutExpo);
             });
-        spriteRenderer.sprite = neutral;
+        if (spriteRenderer.sprite != hurt)
+        {
+            spriteRenderer.sprite = neutral;
+        }
         if (collision.gameObject.CompareTag("Enemy"))
         {
             HitByEnemy(collision.transform);
@@ -362,32 +366,6 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Wall"))
         {
             AudioManager.Instance.PlaySound("bounce", 0.8f, 1.1f);
-        }
-        //this should all go in a cage script
-        if (collision.gameObject.CompareTag("Cage"))
-        {
-            Cinemachine.m_Follow = transform;
-            cageHits++;
-            if (cageHits < cageHitsNeeded)
-            {
-                float lens = Mathf.Lerp(9, 5, (float)cageHits / cageHitsNeeded);
-                DOTween.To(() => targetLensSize, x => targetLensSize = x, lens, 0.1f).SetEase(Ease.OutExpo);
-                AudioManager.Instance.PlaySound("metalhit", 0.8f, 1.1f);
-                AudioManager.Instance.PlayHitSound();
-                collision.gameObject.transform.DORotate(new Vector3(0, 0, Random.Range(-15, 15)), 0.1f);
-                collision.gameObject.transform.DOScale(0.8f, 0.1f).OnComplete(() => { collision.gameObject.transform.DOScale(0.7f, 0.1f); });
-            }
-            else
-            {
-                Time.timeScale = 0.1f;
-                AudioManager.Instance.PlayMusic();
-                Instantiate(cageBurst, transform.position, Quaternion.identity);
-                DOTween.To(() => targetLensSize, x => targetLensSize = x, 9, 1).SetEase(Ease.OutExpo);
-                AudioManager.Instance.PlaySound("break", 1, 1);
-                Cinemachine.m_Follow = nextBubble;
-                Destroy(collision.gameObject);
-            }
-            rigidbody.velocity = Vector3.zero;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

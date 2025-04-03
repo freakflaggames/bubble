@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6feab55591f5f2468a8a367e189de88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HitForce: 50
+  fireBurst: {fileID: 4440411749053867367, guid: a2f1784adeba2f144b94621b6e96183d, type: 3}
   ShootSpeed: 25
 --- !u!96 &8731466336303837962
 TrailRenderer:
