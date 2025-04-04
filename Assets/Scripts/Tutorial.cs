@@ -7,7 +7,7 @@ public class Tutorial : MonoBehaviour
 {
     public static Tutorial Instance;
     int index = -1;
-    public List<GameObject> tutorialSections;
+    public List<GameObject> tutorialTexts, tutorialGraphics;
     private void Awake()
     {
         Instance = this;
@@ -16,13 +16,15 @@ public class Tutorial : MonoBehaviour
     {
         index++;
         Time.timeScale = 0.1f;
-        for (int i = 0; i < tutorialSections.Count; i++)
+        for (int i = 0; i < tutorialTexts.Count; i++)
         {
-            tutorialSections[i].gameObject.SetActive(false);
+            tutorialTexts[i].gameObject.SetActive(false);
+            tutorialGraphics[i].gameObject.SetActive(false);
             if (i == index)
             {
                 print("hi");
-                tutorialSections[i].gameObject.SetActive(true);
+                tutorialTexts[i].gameObject.SetActive(true);
+                tutorialGraphics[i].gameObject.SetActive(true);
             }
         }
     }
