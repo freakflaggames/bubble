@@ -22,9 +22,9 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -760
+        value: -882
         inSlope: 118.37838
-        outSlope: 118.37838
+        outSlope: 167.83783
         tangentMode: 69
         weightedMode: 0
         inWeight: 0.33333334
@@ -32,7 +32,7 @@ AnimationClip:
       - serializedVersion: 3
         time: 2.4666667
         value: -468
-        inSlope: 118.37838
+        inSlope: 167.83783
         outSlope: 76.10739
         tangentMode: 69
         weightedMode: 0
@@ -59,9 +59,9 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -754
+        value: -876
         inSlope: 295.13513
-        outSlope: 295.13513
+        outSlope: 344.5946
         tangentMode: 69
         weightedMode: 0
         inWeight: 0.33333334
@@ -69,7 +69,7 @@ AnimationClip:
       - serializedVersion: 3
         time: 2.4666667
         value: -26
-        inSlope: 295.13513
+        inSlope: 344.5946
         outSlope: 157.85236
         tangentMode: 69
         weightedMode: 0
@@ -228,9 +228,9 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -760
+        value: -882
         inSlope: 118.37838
-        outSlope: 118.37838
+        outSlope: 167.83783
         tangentMode: 69
         weightedMode: 0
         inWeight: 0.33333334
@@ -238,7 +238,7 @@ AnimationClip:
       - serializedVersion: 3
         time: 2.4666667
         value: -468
-        inSlope: 118.37838
+        inSlope: 167.83783
         outSlope: 76.10739
         tangentMode: 69
         weightedMode: 0
@@ -265,9 +265,9 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -754
+        value: -876
         inSlope: 295.13513
-        outSlope: 295.13513
+        outSlope: 344.5946
         tangentMode: 69
         weightedMode: 0
         inWeight: 0.33333334
@@ -275,7 +275,7 @@ AnimationClip:
       - serializedVersion: 3
         time: 2.4666667
         value: -26
-        inSlope: 295.13513
+        inSlope: 344.5946
         outSlope: 157.85236
         tangentMode: 69
         weightedMode: 0
