@@ -665,6 +665,9 @@ namespace Unity.VisualScripting.Generated.Aot
 	// StartIntro.op_Implicit
 	// StartIntro.op_Equality
 	// StartIntro.op_Inequality
+	// Tutorial.op_Implicit
+	// Tutorial.op_Equality
+	// Tutorial.op_Inequality
 	// UIArrowhead.op_Implicit
 	// UIArrowhead.op_Equality
 	// UIArrowhead.op_Inequality
@@ -8428,6 +8431,41 @@ namespace Unity.VisualScripting.Generated.Aot
 		// StartIntro.op_Inequality
 		[global::UnityEngine.Scripting.PreserveAttribute()]
 		public static void StartIntro_op_Inequality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 != arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// Tutorial.op_Implicit
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void Tutorial_op_Implicit()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			bool conversion = ((bool)(arg0));
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// Tutorial.op_Equality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void Tutorial_op_Equality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 == arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// Tutorial.op_Inequality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void Tutorial_op_Inequality()
 		{
 			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
 			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
