@@ -13,6 +13,7 @@ public class ScoreManager : MonoBehaviour
     public Image gemScoreIcon;
     public Transform scoreBonusParent;
     public int score;
+    public int bubbleScore;
     public float smoothedScore, smoothSpeed, scoringTime, scoreBonusTime;
     private void Awake()
     {
@@ -26,7 +27,7 @@ public class ScoreManager : MonoBehaviour
     }
     public void AddPlanetScore()
     {
-
+        bubbleScore = 0;
         Transform scoreBonus = baseScoreBonus.transform.parent;
         scoreBonus.gameObject.SetActive(true);
         scoreBonus.transform.localScale = Vector3.zero;
@@ -34,7 +35,7 @@ public class ScoreManager : MonoBehaviour
         timeScore = Mathf.RoundToInt(timeScore / 10);
         timeScore = Mathf.RoundToInt((timeScore * 10)+10);
         baseScoreBonus.text = "+" + timeScore;
-        score += timeScore;
+        bubbleScore += timeScore;
 
         int keyscore = player.keysCollected * 10;
         int gemscore = player.collectedGems.Count * 50;
@@ -74,7 +75,7 @@ public class ScoreManager : MonoBehaviour
             });
 
             _score += 10;
-            score += 10;
+            bubbleScore += 10;
             keyScoreBonus.text = "+" + _score;
             yield return new WaitForSeconds(time);
             StartCoroutine(KeyScore(numKeysToScore - 1, _score, time));
@@ -98,22 +99,32 @@ public class ScoreManager : MonoBehaviour
                 gemScore.transform.localScale = Vector3.zero;
             }
 
-            float pitch = 1 + (0.1f * (player.collectedGems.Count - numGemsToScore));
+            float pitch = 1 + (0.5f * (player.collectedGems.Count - numGemsToScore));
+            AudioManager.Instance.PlaySound("sparkle", pitch, pitch);
             AudioManager.Instance.PlaySound("crunch", pitch, pitch);
+            AudioManager.Instance.PlayNomSound();
             gemScore.transform.DOScale(1.1f + 0.1f * player.collectedGems.Count, time / 2).SetEase(Ease.OutBack).OnComplete(() =>
             {
                 if (_score > 0)
                 { gemScore.transform.DOScale(1, time / 2).SetEase(Ease.OutBack); }
             });
 
-            _score += 50;
-            score += 50;
-            gemScoreBonus.text = "+" + _score;
+            if (_score == 0)
+            {
+                _score = 1;
+            }
+            _score ++;
+            gemScoreBonus.text = "x" + _score;
             yield return new WaitForSeconds(time);
             StartCoroutine(GemScore(numGemsToScore - 1, _score, time));
         }
         else
         {
+            if (_score > 0)
+            { 
+                bubbleScore *= _score; 
+            }
+            score += bubbleScore;
             player.collectedGems.Clear();
         }
     }

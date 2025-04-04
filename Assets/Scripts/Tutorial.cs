@@ -15,6 +15,7 @@ public class Tutorial : MonoBehaviour
     public void NextSection()
     {
         index++;
+        Time.timeScale = 0.1f;
         for (int i = 0; i < tutorialSections.Count; i++)
         {
             tutorialSections[i].gameObject.SetActive(false);

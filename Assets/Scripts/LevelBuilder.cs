@@ -37,7 +37,7 @@ public class LevelBuilder : MonoBehaviour
 
         //spawn a random amount of enemies/keys based on difficulty
         int enemyCount = Random.Range(minEnemyDifficulty, maxEnemyDifficulty);
-        int gemCount = Random.Range(0, Mathf.RoundToInt(LevelManager.Instance.DifficultyRange.y + 1f));
+        int gemCount = Random.Range(Mathf.RoundToInt(minDifficulty), Mathf.RoundToInt(maxDifficulty));
         gemCount = Mathf.Clamp(gemCount, 0, 3);
         int obstacleCount = Random.Range(0, Mathf.RoundToInt(LevelManager.Instance.DifficultyRange.y));
         obstacleCount = Mathf.Clamp(obstacleCount, 0, 2);

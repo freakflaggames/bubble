@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Fireball : MonoBehaviour
 {
+    public GameObject fireBurst;
     public float ShootSpeed;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -14,6 +15,7 @@ public class Fireball : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Wall"))
         {
+            Instantiate(fireBurst, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
