@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,6 +8,7 @@ public class PauseMenu : MonoBehaviour
 {
     public static PauseMenu Instance;
     public GameObject menu;
+    public GameObject centerAimCheckmark;
     public bool paused;
     private void Awake()
     {
@@ -28,6 +30,13 @@ public class PauseMenu : MonoBehaviour
     }
     public void MainMenu()
     {
+        Time.timeScale = 1; 
         SceneManager.LoadScene("Title");
+    }
+
+    public void CenterAim()
+    {
+        PlayerController.Instance.centerAim = !PlayerController.Instance.centerAim;
+        centerAimCheckmark.SetActive(PlayerController.Instance.centerAim);
     }
 }

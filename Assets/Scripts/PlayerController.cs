@@ -6,6 +6,8 @@ using DG.Tweening;
 using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance;
+
     public CinemachineVirtualCamera Cinemachine;
     public LayerMask WallLayer;
 
@@ -58,6 +60,7 @@ public class PlayerController : MonoBehaviour
     bool travelling;
     bool shake;
     bool freezeReturn;
+    public bool centerAim;
     public bool canDash;
 
     bool firstLevel;
@@ -69,6 +72,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
         collider = GetComponent<CircleCollider2D>();
         rigidbody = GetComponent<Rigidbody2D>();
         line.positionCount = 2;
@@ -120,7 +124,7 @@ public class PlayerController : MonoBehaviour
         travelTrail.enableEmission = travelling;
 
         //cant aim or perform dash while travelling to another world
-        if (!travelling && !isAboutToTravel)
+        if (!travelling && !isAboutToTravel && !PauseMenu.Instance.paused)
         {
             if (Input.GetMouseButtonDown(0) && canDash)
             {
@@ -183,12 +187,20 @@ public class PlayerController : MonoBehaviour
     }
     public void AimDash()
     {
-        //dash direction is calculated from where you started your touch vs where it is now
         mouseInput = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //move input is inverted so it feels like youre pulling back to launch
-        moveInput = -(mouseInput - startMouseInput).normalized;
 
-        startInputGraphic.gameObject.SetActive(true);
+        if (centerAim)
+        {
+            moveInput = (mouseInput - (Vector2)transform.position).normalized;
+        }
+        else
+        {
+            //dash direction is calculated from where you started your touch vs where it is now
+            //move input is inverted so it feels like youre pulling back to launch
+            moveInput = -(mouseInput - startMouseInput).normalized;
+        }
+
+            startInputGraphic.gameObject.SetActive(true);
         startInputGraphic.transform.position = Camera.main.WorldToScreenPoint(startMouseInput);
 
         currentInputGraphic.gameObject.SetActive(true);
