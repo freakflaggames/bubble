@@ -1,0 +1,17 @@
+Title_PwP.png
+	size: 2978, 1705
+	filter: Linear, Linear
+	pma: true
+a
+	bounds: 911, 307, 774, 794
+c
+	bounds: 2363, 332, 536, 769
+i
+	bounds: 911, 26, 278, 690
+	rotate: 90
+n
+	bounds: 1688, 334, 672, 767
+p
+	bounds: 0, 0, 908, 1101
+tail
+	bounds: 0, 1104, 2978, 601
