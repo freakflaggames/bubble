@@ -30,5 +30,5 @@ MonoBehaviour:
   - Moving_title
   duration:
   - 0
-  defaultMix: 0.2
+  defaultMix: 0.5
   controller: {fileID: 9100000, guid: be2f2a407149da84fb46f6488f6e2fb2, type: 2}
