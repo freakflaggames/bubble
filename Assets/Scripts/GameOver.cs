@@ -1,102 +1,58 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using DG.Tweening;
-using System.Linq;
+using LeaderboardCreatorDemo;
 
 public class GameOver : MonoBehaviour
 {
+    public static GameOver Instance;
     public int currentScore;
-    float smoothedScore;
-    int highestIndex;
-    public GameObject starBurst;
+    public LeaderboardManager leaderboard;
     public GameObject inputOverlay;
-    public GameObject leaderboardBar;
-    public Transform leaderboardParent;
+    public GameObject keyboard;
     public TextMeshProUGUI scoreText;
-    public TMP_InputField nameInput;
+    public InputField nameInput;
     public Image blackOverlay;
     public bool clear;
+    public bool usingKeyboard;
+    public bool caps;
+    private void Awake()
+    {
+        Instance = this;
+    }
     private void Start()
     {
         currentScore = PlayerPrefs.GetInt("score");
-        highestIndex = PlayerPrefs.GetInt("highestIndex");
-        if (clear)
-        {
-            ClearScores();
-        }
         blackOverlay.DOColor(new Color(0, 0, 0, 1), .5f).OnComplete(()=> { blackOverlay.DOColor(new Color(0, 0, 0, 0), .5f); });
     }
     private void Update()
     {
-        scoreText.text = Mathf.Round(smoothedScore) + "";
+        scoreText.text = currentScore.ToString();
     }
     
-    public void ClearScores()
-    {
-        highestIndex = 0;
-        PlayerPrefs.SetInt("highestIndex", highestIndex);
-    }
     public void CloseOverlay()
     {
         inputOverlay.gameObject.SetActive(false);
-        SortLeaderboardScores();
     }
 
     public void SubmitScore()
     {
-        string name = nameInput.text;
-        PlayerPrefs.SetInt(name, currentScore);
-        PlayerPrefs.SetString(highestIndex+"", name);
-        PlayerPrefs.SetInt("highestIndex", highestIndex + 1);
-        highestIndex++;
+        leaderboard.UploadEntry(currentScore);
         CloseOverlay();
     }
-    public void SortLeaderboardScores()
+    public void ToggleKeyboard()
     {
-        var scores = new List<KeyValuePair<string,int>>();
-        for (int i =0; i < highestIndex; i++)
+       usingKeyboard = !usingKeyboard;
+        if (usingKeyboard)
         {
-            string name = PlayerPrefs.GetString(i + "");
-            int score = PlayerPrefs.GetInt(name);
-            scores.Add(new KeyValuePair<string, int>(name, score));
+            nameInput.gameObject.transform.parent.DOLocalMoveY(120, 0.25f).SetEase(Ease.OutBack);
+            keyboard.transform.DOLocalMoveY(-95, 0.25f).SetEase(Ease.OutBack);
         }
-        scores.Sort((x, y) => y.Value.CompareTo(x.Value));
-        for (int i = 0; i < scores.Count; i++)
+        else
         {
-            string name = scores[i].Key;
-            PlayerPrefs.SetString(i + "", name);
+            nameInput.gameObject.transform.parent.DOLocalMoveY(0, 0.25f).SetEase(Ease.OutBack);
+            keyboard.transform.DOLocalMoveY(-400, 0.25f).SetEase(Ease.OutBack);
         }
-        GenerateLeaderboardBars();
-    }
-    public void GenerateLeaderboardBars()
-    {
-        for (int i = 0; i < highestIndex; i++)
-        {
-            string name = PlayerPrefs.GetString(i + "");
-            int score = PlayerPrefs.GetInt(name);
-            GenerateLeaderboardBar(i + 1, name, score);
-        }
-        RevealScore();
-    }
-    public void RevealScore()
-    {
-        scoreText.transform.DOScale(1.5f, 1).SetEase(Ease.OutExpo).OnComplete(() =>
-        {
-            scoreText.transform.DOScale(1, 0.25f).SetEase(Ease.OutExpo);
-            Vector3 particlePosition = new Vector3(-4.5f, 0);
-            Instantiate(starBurst, particlePosition, Quaternion.identity);
-            AudioManager.Instance.PlaySound("keyscollected",1,1);
-        });
-        DOTween.To(() => smoothedScore, x => smoothedScore = x, currentScore, 1).SetEase(Ease.OutExpo);
-    }
-    public void GenerateLeaderboardBar(int index, string name, int score)
-    {
-        LeaderboardBar bar = Instantiate(leaderboardBar, leaderboardParent).GetComponent<LeaderboardBar>();
-        bar.index.text = index + "";
-        bar.name.text = name;
-        bar.score.text = score + "";
-    }
+    }    
 }
