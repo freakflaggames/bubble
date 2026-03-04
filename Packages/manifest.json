@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.esotericsoftware.spine.timeline": "file:C:/Users/Ngo Hoang Ngoc Anh/Downloads/com.esotericsoftware.spine.timeline-4.2",
     "com.unity.cinemachine": "2.10.1",
     "com.unity.collab-proxy": "2.5.2",
     "com.unity.feature.2d": "2.0.1",

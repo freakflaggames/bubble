@@ -1097,7 +1097,7 @@ namespace Spine.Unity.Editor {
 						skeletonDataAsset.skeletonJSON = spineJson;
 						skeletonDataAsset.defaultMix = SpineEditorUtilities.Preferences.defaultMix;
 						skeletonDataAsset.scale = SpineEditorUtilities.Preferences.defaultScale;
-						skeletonDataAsset.blendModeMaterials.applyAdditiveMaterial = !SpineEditorUtilities.Preferences.UsesPMAWorkflow;
+						skeletonDataAsset.blendModeMaterials.applyAdditiveMaterial = SpineEditorUtilities.Preferences.applyAdditiveMaterial;
 					}
 					AssetDatabase.CreateAsset(skeletonDataAsset, filePath);
 				} else {

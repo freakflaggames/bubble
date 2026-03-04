@@ -125,10 +125,12 @@ namespace Spine.Unity.Editor {
 			return true;
 		}
 
+		internal const bool DEFAULT_APPLY_ADDITIVE_MATERIAL = false;
+		public bool applyAdditiveMaterial = DEFAULT_APPLY_ADDITIVE_MATERIAL;
+
 		public const string DEFAULT_BLEND_MODE_MULTIPLY_MATERIAL = "SkeletonPMAMultiply";
 		public const string DEFAULT_BLEND_MODE_SCREEN_MATERIAL = "SkeletonPMAScreen";
 		public const string DEFAULT_BLEND_MODE_ADDITIVE_MATERIAL = "SkeletonPMAAdditive";
-
 		public Material blendModeMaterialMultiply = null;
 		public Material blendModeMaterialScreen = null;
 		public Material blendModeMaterialAdditive = null;
@@ -308,6 +310,8 @@ namespace Spine.Unity.Editor {
 					SerializedProperty blendModeMaterialMultiply = settings.FindProperty("blendModeMaterialMultiply");
 					SerializedProperty blendModeMaterialScreen = settings.FindProperty("blendModeMaterialScreen");
 					bool isTexturePresetPMA = IsPMAWorkflow(textureSettingsRef.stringValue);
+					EditorGUILayout.PropertyField(settings.FindProperty("applyAdditiveMaterial"),
+						new GUIContent("Apply Additive Material", "The Default Apply Additive Material setting for newly imported SkeletonDataAssets."));
 					ShowBlendModeMaterialProperty(blendModeMaterialAdditive, "Additive", isTexturePresetPMA);
 					ShowBlendModeMaterialProperty(blendModeMaterialMultiply, "Multiply", isTexturePresetPMA);
 					ShowBlendModeMaterialProperty(blendModeMaterialScreen, "Screen", isTexturePresetPMA);

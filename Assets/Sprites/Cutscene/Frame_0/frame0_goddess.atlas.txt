@@ -1,0 +1,17 @@
+frame0_goddess.png
+	size: 3088, 2771
+	filter: Linear, Linear
+	pma: true
+body
+	bounds: 0, 496, 1677, 2275
+front_leg
+	bounds: 1680, 135, 1213, 990
+left_arm
+	bounds: 2513, 1947, 824, 575
+	rotate: 90
+rear_leg
+	bounds: 0, 0, 493, 1474
+	rotate: 90
+right_arm
+	bounds: 1680, 1128, 1643, 830
+	rotate: 90
