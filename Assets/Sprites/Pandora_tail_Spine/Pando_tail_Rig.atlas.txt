@@ -1,0 +1,6 @@
+Pando_tail_Rig.png
+	size: 578, 484
+	filter: Linear, Linear
+	pma: true
+Pando_tail_GP
+	bounds: 0, 0, 578, 484

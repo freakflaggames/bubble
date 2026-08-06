@@ -1,0 +1,51 @@
+frame9_godhandnpando.png
+	size: 5245, 3665
+	filter: Linear, Linear
+	pma: true
+body_pando9
+	bounds: 1851, 582, 2131, 1205
+ear9
+	bounds: 4503, 1275, 278, 148
+f9_handpad
+	bounds: 4267, 1426, 1245, 639
+	rotate: 90
+f9_thumb
+	bounds: 4267, 2674, 991, 978
+	rotate: 90
+fourth9
+	bounds: 0, 5, 573, 414
+godarm9
+	bounds: 0, 1790, 4264, 1875
+hand9_inner
+	bounds: 0, 422, 1848, 1365
+leftarm9
+	bounds: 2854, 115, 464, 913
+	rotate: 90
+lefthand9
+	bounds: 3985, 1484, 303, 240
+	rotate: 90
+middle9
+	bounds: 3770, 0, 659, 428
+pandora9_eyes
+	bounds: 4909, 1442, 427, 261
+	rotate: 90
+pinky9
+	bounds: 576, 33, 386, 410
+	rotate: 90
+point9_fingerbase
+	bounds: 4503, 617, 496, 562
+point_finger9
+	bounds: 4503, 222, 668, 392
+rightarm9
+	bounds: 4909, 1872, 799, 325
+	rotate: 90
+righthand9
+	bounds: 4909, 1182, 241, 257
+rightleg9
+	bounds: 3985, 431, 992, 515
+	rotate: 90
+tail_f9
+	bounds: 1851, 91, 488, 1000
+	rotate: 90
+tongue_pando_7
+	bounds: 5002, 907, 134, 272

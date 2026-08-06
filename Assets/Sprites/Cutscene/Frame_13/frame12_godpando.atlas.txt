@@ -1,0 +1,86 @@
+frame12_godpando.png
+	size: 6561, 5179
+	filter: Linear, Linear
+	pma: true
+arm_pando13
+	bounds: 5158, 342, 556, 128
+body_pando13
+	bounds: 3848, 28, 442, 1207
+	rotate: 90
+bodygod_12
+	bounds: 0, 90, 3735, 5089
+bodypando_12
+	bounds: 6097, 2594, 443, 1218
+browgod_12
+	bounds: 6097, 3815, 538, 451
+	rotate: 90
+ear_pando13
+	bounds: 3738, 278, 194, 101
+	rotate: 90
+eargod_12
+	bounds: 5839, 1734, 660, 585
+earpando_12
+	bounds: 5533, 196, 176, 143
+eye_pando13
+	bounds: 0, 0, 87, 112
+	rotate: 90
+eyegod_12
+	bounds: 5158, 0, 339, 372
+	rotate: 90
+eyepando_12
+	bounds: 6336, 125, 116, 100
+fingersgod_12
+	bounds: 4377, 596, 372, 877
+	rotate: 90
+forarm_god12
+	bounds: 3738, 1738, 2098, 1264
+hand_pando13
+	bounds: 3738, 22, 203, 107
+	rotate: 90
+head_pando12
+	bounds: 6097, 4356, 456, 402
+head_pando13
+	bounds: 6097, 4761, 457, 418
+headgod_12
+	bounds: 3738, 3005, 2174, 2356
+	rotate: 90
+mouthgod_12
+	bounds: 5515, 473, 637, 212
+	rotate: 90
+mouthpando_12
+	bounds: 5058, 29, 196, 97
+	rotate: 90
+nose wrinkesgod_12
+	bounds: 5515, 1441, 311, 294
+palm_god12
+	bounds: 5730, 228, 808, 831
+	rotate: 90
+pando_sweat_12
+	bounds: 115, 3, 54, 84
+rear leg_pando13
+	bounds: 5789, 1039, 260, 747
+	rotate: 90
+rearleg_pando12
+	bounds: 5839, 2322, 269, 711
+	rotate: 90
+shoulder_pando13
+	bounds: 5515, 1113, 271, 325
+shoulderpando_12
+	bounds: 5839, 2675, 243, 327
+tailpando13
+	bounds: 5533, 42, 151, 800
+	rotate: 90
+tailpando_12
+	bounds: 5829, 1302, 429, 650
+	rotate: 90
+thumbgod_12
+	bounds: 3738, 475, 636, 493
+tooth_pando13
+	bounds: 172, 27, 28, 27
+	rotate: 90
+toothpando_12
+	bounds: 172, 58, 29, 25
+	rotate: 90
+upperarm_god12
+	bounds: 3738, 971, 764, 1774
+	rotate: 90

@@ -1,0 +1,52 @@
+frame3_goddess.png
+	size: 4671, 5541
+	filter: Linear, Linear
+	pma: true
+boob shadow
+	bounds: 0, 2874, 2667, 2818
+	rotate: 90
+cigarrete
+	bounds: 0, 38, 1296, 138
+	rotate: 90
+eye fur
+	bounds: 1740, 21, 547, 324
+front arm
+	bounds: 991, 62, 746, 1293
+front hand
+	bounds: 141, 971, 768, 384
+front leg
+	bounds: 2821, 1337, 1840, 2017
+head and mane
+	bounds: 0, 1358, 1513, 1739
+	rotate: 90
+inner hand 
+	bounds: 2821, 3357, 2184, 1850
+	rotate: 90
+left eye
+	bounds: 709, 857, 219, 111
+middle finger + ring finger + pinky
+	bounds: 541, 16, 447, 329
+mouth_open
+	bounds: 141, 0, 397, 345
+nose
+	bounds: 141, 372, 596, 565
+	rotate: 90
+nose wrinkes
+	bounds: 709, 553, 191, 122
+point finger
+	bounds: 709, 678, 176, 218
+	rotate: 90
+rear arm
+	bounds: 2818, 92, 1242, 1507
+	rotate: 90
+rear leg
+	bounds: 1742, 348, 1073, 2523
+right eye
+	bounds: 709, 396, 154, 102
+	rotate: 90
+thumb
+	bounds: 4328, 950, 384, 151
+	rotate: 90
+tounge
+	bounds: 2290, 31, 314, 268
+	rotate: 90

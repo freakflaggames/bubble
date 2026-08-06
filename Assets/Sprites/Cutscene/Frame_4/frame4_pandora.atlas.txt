@@ -1,0 +1,26 @@
+frame4_pandora.png
+	size: 4890, 4609
+	filter: Linear, Linear
+	pma: true
+backleg_red
+	bounds: 4242, 145, 731, 412
+	rotate: 90
+body_red
+	bounds: 4242, 2053, 1331, 539
+	rotate: 90
+ear_red
+	bounds: 4729, 1385, 310, 161
+	rotate: 90
+front_red
+	bounds: 4242, 3387, 491, 540
+	rotate: 90
+head_red
+	bounds: 4242, 3881, 728, 643
+	rotate: 90
+pandora_bubble
+	bounds: 0, 0, 4609, 4239
+	rotate: 90
+rear_red
+	bounds: 4242, 1698, 533, 352
+tail_red
+	bounds: 4242, 879, 484, 816

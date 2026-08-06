@@ -1,0 +1,25 @@
+frame7_pandora.png
+	size: 2069, 1918
+	filter: Linear, Linear
+	pma: true
+backleg_pando_7
+	bounds: 1220, 75, 209, 614
+	rotate: 90
+body_pando_7
+	bounds: 0, 0, 1217, 1918
+ear_pando_7
+	bounds: 1803, 384, 266, 179
+face_pando_7
+	bounds: 1803, 899, 340, 242
+	rotate: 90
+hand_pando_7
+	bounds: 1803, 566, 330, 211
+	rotate: 90
+pando_arm_7
+	bounds: 1220, 1242, 676, 849
+	rotate: 90
+tail
+	bounds: 1220, 287, 952, 580
+	rotate: 90
+tongue_pando_7
+	bounds: 1837, 109, 134, 272

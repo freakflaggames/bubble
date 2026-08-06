@@ -1,0 +1,38 @@
+frame6_pandora_lick.png
+	size: 5629, 2743
+	filter: Linear, Linear
+	pma: true
+body_lick
+	bounds: 0, 812, 2259, 1931
+ears_lick
+	bounds: 2262, 1738, 3015, 1005
+head_lick
+	bounds: 2262, 0, 1735, 1905
+	rotate: 90
+left hand_lick
+	bounds: 4170, 859, 876, 740
+	rotate: 90
+left_arm_lick
+	bounds: 1041, 204, 605, 1050
+	rotate: 90
+left_eye_lick
+	bounds: 5048, 158, 382, 271
+	rotate: 90
+mouth_lick
+	bounds: 4913, 1022, 713, 495
+	rotate: 90
+nose_lick
+	bounds: 5280, 1762, 290, 82
+right hand_lick
+	bounds: 4170, 116, 875, 740
+right_arm_lick
+	bounds: 0, 150, 659, 1038
+	rotate: 90
+right_eye_lick
+	bounds: 5411, 1366, 393, 218
+	rotate: 90
+tongue_lick
+	bounds: 5048, 543, 466, 476
+upper_lip
+	bounds: 5280, 1847, 896, 329
+	rotate: 90

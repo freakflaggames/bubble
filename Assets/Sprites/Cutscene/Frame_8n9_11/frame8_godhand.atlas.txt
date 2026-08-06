@@ -1,0 +1,22 @@
+frame8_godhand.png
+	size: 6579, 2089
+	filter: Linear, Linear
+	pma: true
+arm_goddes
+	bounds: 0, 482, 4772, 1607
+fourth8
+	bounds: 951, 99, 888, 380
+inner_hand_8
+	bounds: 4775, 557, 1178, 1532
+midd8
+	bounds: 0, 20, 948, 459
+pawpad
+	bounds: 4775, 0, 554, 1042
+	rotate: 90
+pinky8
+	bounds: 1842, 109, 705, 370
+point8
+	bounds: 5956, 1229, 860, 623
+	rotate: 90
+thumb_god8
+	bounds: 5956, 160, 588, 1066
