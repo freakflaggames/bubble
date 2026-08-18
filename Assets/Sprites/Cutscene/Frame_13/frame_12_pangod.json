@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "UZL0OZt8aiY", "spine": "4.3.23", "x": -2894.674, "y": -267.3733, "width": 5234.606, "height": 5326.823 },
+"skeleton": { "hash": "HMD/jg4Q2lk", "spine": "4.3.23", "x": -2894.674, "y": -267.3733, "width": 5234.606, "height": 5326.823 },
 "bones": [
 	{ "name": "root" },
 	{ "name": "bodygod_12a", "parent": "root", "length": 1232.823, "rotation": 88.46223, "x": 21.51758, "y": 203.6593 },
@@ -1159,7 +1159,10 @@
 			},
 			"ear_pando13": {
 				"rotate": [
-					{ "value": -7.860096 }
+					{ "value": 60.97135 }
+				],
+				"translate": [
+					{ "x": -44.73657, "y": 19.637207 }
 				]
 			},
 			"ear_pando14": {

@@ -1,0 +1,66 @@
+Frame_4to11_shirmps.png
+	size: 6643, 1097
+	filter: Linear, Linear
+	pma: true
+anntena_shrimp4
+	bounds: 6059, 503, 197, 198
+	rotate: 90
+antennae_second_shrimp6
+	bounds: 6450, 284, 185, 187
+	rotate: 90
+antennae_shrimp10
+	bounds: 6059, 296, 204, 181
+	rotate: 90
+antennae_shrimp11
+	bounds: 6243, 297, 204, 180
+antennae_shrimp6
+	bounds: 6260, 480, 199, 196
+antennae_shrimp9
+	bounds: 6462, 472, 204, 181
+	rotate: 90
+body_second_shrimp6
+	bounds: 1205, 85, 1129, 1012
+body_shrimp10
+	bounds: 2337, 2, 1095, 936
+	rotate: 90
+body_shrimp11
+	bounds: 3276, 2, 1095, 936
+	rotate: 90
+body_shrimp4
+	bounds: 0, 28, 1202, 1069
+body_shrimp6
+	bounds: 5154, 27, 1070, 902
+	rotate: 90
+body_shrimp9
+	bounds: 4215, 2, 1095, 936
+	rotate: 90
+eye_shrimp_shut_left
+	bounds: 1205, 13, 132, 69
+eye_shrimp_shut_right
+	bounds: 1340, 13, 132, 69
+eyeball_shrimp
+	bounds: 1475, 0, 82, 104
+	rotate: 90
+eyes_shrimp10
+	bounds: 6405, 154, 143, 127
+eyes_shrimp11
+	bounds: 6059, 165, 143, 128
+eyes_shrimp4
+	bounds: 6405, 9, 142, 126
+	rotate: 90
+eyes_shrimp9
+	bounds: 6059, 20, 142, 128
+	rotate: 90
+happy face_second_shrimp6
+	bounds: 6323, 679, 224, 183
+happy faceshirmp6
+	bounds: 6405, 865, 232, 232
+paws_shrimp9
+	bounds: 6243, 84, 210, 159
+	rotate: 90
+scelar_shrimp
+	bounds: 6059, 703, 173, 261
+	rotate: 90
+shirmps_sweat
+	bounds: 6059, 879, 218, 343
+	rotate: 90
