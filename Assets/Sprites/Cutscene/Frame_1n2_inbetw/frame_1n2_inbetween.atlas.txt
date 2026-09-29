@@ -1,0 +1,52 @@
+frame_1n2_inbetween.png
+	size: 6045, 3767
+	filter: Linear, Linear
+	pma: true
+armgod_in1
+	bounds: 4488, 2394, 1415, 979
+bodygod_in1
+	bounds: 0, 889, 2878, 2791
+	rotate: 90
+cigarrete_in1
+	bounds: 4786, 3434, 1259, 333
+front leg_in1
+	bounds: 2794, 1687, 2080, 1691
+	rotate: 90
+head and mane_in1
+	bounds: 3196, 10, 1587, 1674
+indexgod_in1
+	bounds: 4488, 3376, 149, 237
+	rotate: 90
+left eye_in1
+	bounds: 3054, 1498, 134, 186
+leftbrow_in1
+	bounds: 2517, 0, 386, 270
+middle_fourthgod_in1
+	bounds: 2794, 1381, 256, 303
+mouth_in1
+	bounds: 2794, 917, 196, 249
+	rotate: 90
+muzzle_in1
+	bounds: 2517, 273, 534, 613
+nose_in1
+	bounds: 4786, 585, 433, 417
+	rotate: 90
+palmgod_in1
+	bounds: 4488, 1841, 550, 463
+	rotate: 90
+pinkygod_in1
+	bounds: 4488, 3528, 239, 258
+	rotate: 90
+reararm_in1
+	bounds: 4954, 1021, 1000, 1370
+rearleg_in1
+	bounds: 0, 40, 846, 2514
+	rotate: 90
+right eye_in1
+	bounds: 4786, 354, 228, 179
+	rotate: 90
+rightbrow_in1
+	bounds: 2794, 1116, 384, 262
+thumbgod_in1
+	bounds: 2906, 0, 270, 287
+	rotate: 90
