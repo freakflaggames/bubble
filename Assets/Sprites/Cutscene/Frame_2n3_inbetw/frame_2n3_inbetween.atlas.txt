@@ -1,0 +1,64 @@
+frame_2n3_inbetween.png
+	size: 6002, 3694
+	filter: Linear, Linear
+	pma: true
+2n3_Ghead
+	bounds: 4396, 0, 1563, 1717
+2n3_Leye
+	bounds: 1025, 113, 229, 108
+2n3_LfourthF
+	bounds: 2588, 18, 130, 278
+2n3_Lindex
+	bounds: 758, 102, 119, 264
+	rotate: 90
+2n3_LinnerHand
+	bounds: 5656, 2792, 549, 340
+	rotate: 90
+2n3_LmiddleF
+	bounds: 479, 101, 120, 276
+	rotate: 90
+2n3_Lpinky
+	bounds: 2405, 52, 180, 251
+2n3_Reye
+	bounds: 2502, 335, 164, 78
+	rotate: 90
+2n3_RinnerHand
+	bounds: 1332, 45, 563, 454
+2n3_Rleg
+	bounds: 3787, 1720, 1974, 1866
+	rotate: 90
+2n3_body
+	bounds: 0, 872, 2855, 2822
+2n3_cigar
+	bounds: 1332, 502, 1258, 367
+2n3_eyeSockets
+	bounds: 1898, 306, 601, 193
+2n3_fourthFR
+	bounds: 2593, 299, 243, 259
+2n3_frontArm
+	bounds: 0, 224, 1329, 645
+2n3_index
+	bounds: 237, 73, 148, 239
+	rotate: 90
+2n3_middleFR
+	bounds: 2593, 561, 255, 308
+2n3_mouth
+	bounds: 0, 47, 174, 234
+	rotate: 90
+2n3_muzzle
+	bounds: 3787, 1153, 569, 564
+2n3_nose
+	bounds: 5656, 3344, 346, 350
+2n3_pinkyR
+	bounds: 2190, 94, 212, 209
+2n3_rArm
+	bounds: 2858, 296, 848, 1535
+	rotate: 90
+2n3_rearLeg
+	bounds: 2858, 1147, 926, 2547
+2n3_thumbR
+	bounds: 1898, 31, 272, 289
+	rotate: 90
+2n3_tongue
+	bounds: 2721, 109, 187, 126
+	rotate: 90
